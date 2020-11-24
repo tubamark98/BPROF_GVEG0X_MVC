@@ -43,7 +43,7 @@ namespace Repos
             Save();
         }
 
-        private GymClient GetItem(string gymID)
+        public GymClient GetItem(string gymID)
         {
             return context.GymClients.FirstOrDefault(g => (g.GymID == gymID));
         }

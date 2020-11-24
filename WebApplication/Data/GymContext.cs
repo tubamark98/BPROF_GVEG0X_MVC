@@ -30,5 +30,6 @@ namespace Data
             }
         }
         public DbSet<GymClient> GymClients { get; set; }
+        public DbSet<Trainer> Trainers { get; set; }
     }
 }

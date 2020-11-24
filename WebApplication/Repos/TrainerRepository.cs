@@ -13,10 +13,16 @@ namespace Repos
 
         public void Add(Trainer item)
         {
-            throw new NotImplementedException();
+            context.Trainers.Add(item);
+            Save();
         }
 
         public void Delete(Trainer item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Trainer GetItem(string gymID)
         {
             throw new NotImplementedException();
         }
@@ -28,7 +34,7 @@ namespace Repos
 
         public void Save()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public void Update(string gymID, Trainer newItem)

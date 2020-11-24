@@ -11,6 +11,8 @@ namespace Repos
         void Delete(T item);
         IQueryable<T> Read();
         void Update(string gymID, T newItem);
+        T GetItem(string gymID);
         void Save();
+
     }
 }
