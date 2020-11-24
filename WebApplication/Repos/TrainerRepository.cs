@@ -19,17 +19,17 @@ namespace Repos
 
         public void Delete(Trainer item)
         {
-            throw new NotImplementedException();
+            context.Trainers.Remove(item);
         }
 
-        public Trainer GetItem(string gymID)
+        public Trainer GetItem(string trainerID)
         {
-            throw new NotImplementedException();
+            return context.Trainers.FirstOrDefault(t => t.TrainerID == trainerID);
         }
 
         public IQueryable<Trainer> Read()
         {
-            throw new NotImplementedException();
+            return context.Trainers.AsQueryable();
         }
 
         public void Save()
@@ -37,9 +37,16 @@ namespace Repos
             context.SaveChanges();
         }
 
-        public void Update(string gymID, Trainer newItem)
+        public void Update(string trainedID, Trainer newItem)
         {
-            throw new NotImplementedException();
+            var oldItem = GetItem(trainedID);
+            oldItem.TrainerName = newItem.TrainerName;
+            oldItem.GymClients.Clear();
+
+            foreach (var item in newItem.GymClients)
+                oldItem.GymClients.Add(item);
+
+            Save();
         }
     }
 }
