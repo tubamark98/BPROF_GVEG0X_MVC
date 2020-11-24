@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Repos
 {
-    public class ClientRepository : IRepoBase<GymClient>
+    public class ClientRepository : IRepoBase<Models.GymClient>
     {
         public void Add(GymClient item)
         {
