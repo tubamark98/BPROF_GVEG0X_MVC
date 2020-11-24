@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="GymDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
