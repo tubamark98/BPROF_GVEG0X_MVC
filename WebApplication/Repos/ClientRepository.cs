@@ -2,6 +2,7 @@
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Repos
@@ -33,7 +34,18 @@ namespace Repos
 
         public void Update(string gymID, GymClient newItem)
         {
-            throw new NotImplementedException();
+            var oldItem = GetItem(gymID);
+            oldItem.FullName = newItem.FullName;
+            oldItem.Age = newItem.Age;
+            oldItem.Gender = newItem.Gender;
+            oldItem.BeenWorkingOutFor = newItem.BeenWorkingOutFor;
+            oldItem.Verified = newItem.Verified;
+            Save();
+        }
+
+        private GymClient GetItem(string gymID)
+        {
+            return context.GymClients.FirstOrDefault(g => (g.GymID == gymID));
         }
     }
 }
