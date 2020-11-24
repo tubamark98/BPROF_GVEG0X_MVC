@@ -1,0 +1,32 @@
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Data
+{
+    public class GymContext : DbContext
+    {
+        public GymContext(DbContextOptions<GymContext> opt) : base(opt)
+        {
+
+        }
+
+        public GymContext()
+        {
+            this.Database.EnsureCreated();
+
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.
+                    UseLazyLoadingProxies().
+                    UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\GymDB.mdf;integrated security=True;MultipleActiveResultSets=True");
+
+            }
+        }
+    }
+}
