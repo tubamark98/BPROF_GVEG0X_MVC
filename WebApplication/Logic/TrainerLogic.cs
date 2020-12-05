@@ -46,7 +46,17 @@ namespace Logic
 
         #region Non-CRUD methods
 
+        public void AddClientToTrainer(GymClient gymClient, string trainerId)
+        {
+            GetTrainer(trainerId).GymClients.Add(gymClient);
+            trainerRepo.Save();
+        }
 
+        public void RemoveClientFromTrainer(GymClient gymClient, string trainerId)
+        {
+            GetTrainer(trainerId).GymClients.Remove(gymClient);
+            trainerRepo.Save();
+        }
 
         #endregion
     }
