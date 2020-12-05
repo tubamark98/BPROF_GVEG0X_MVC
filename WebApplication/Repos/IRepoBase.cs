@@ -9,6 +9,8 @@ namespace Repos
     {
         void Add(T item);
         void Delete(T item);
+        void Delete(string id);
+        T Read(string id);
         IQueryable<T> Read();
         void Update(string gymID, T newItem);
         T GetItem(string gymID);

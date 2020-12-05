@@ -47,5 +47,15 @@ namespace Repos
         {
             return context.GymClients.FirstOrDefault(g => (g.GymID == gymID));
         }
+
+        public void Delete(string id)
+        {
+            Delete(Read(id));
+        }
+
+        public GymClient Read(string id)
+        {
+            return context.GymClients.FirstOrDefault(t => t.GymID == id);
+        }
     }
 }

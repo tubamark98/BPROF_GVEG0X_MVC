@@ -22,6 +22,11 @@ namespace Repos
             context.Trainers.Remove(item);
         }
 
+        public void Delete(string id)
+        {
+            Delete(Read(id));
+        }
+
         public Trainer GetItem(string trainerID)
         {
             return context.Trainers.FirstOrDefault(t => t.TrainerID == trainerID);
@@ -30,6 +35,11 @@ namespace Repos
         public IQueryable<Trainer> Read()
         {
             return context.Trainers.AsQueryable();
+        }
+
+        public Trainer Read(string id)
+        {
+            return context.Trainers.FirstOrDefault(t => t.TrainerID == id);
         }
 
         public void Save()
