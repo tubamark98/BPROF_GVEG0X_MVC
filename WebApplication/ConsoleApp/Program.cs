@@ -18,32 +18,14 @@ namespace ConsoleApp
             TrainerLogic trainerLogic = new TrainerLogic(clientRepo, trainerRepo);
             ClientLogic clientLogic = new ClientLogic(clientRepo, trainerRepo);
 
-            Trainer trainer = new Trainer();
-            trainer.TrainerID = Guid.NewGuid().ToString();
-            trainer.TrainerName = "Gyuri anyabaszó";
-
-            trainerLogic.AddTrainer(trainer);
-
-            var id = trainerLogic.GetTrainers().First().TrainerID;
-
-            GymClient newClient = new GymClient();
-            newClient.GymID = Guid.NewGuid().ToString();
-            newClient.Gender = Genders.Nő;
-            newClient.FullName = "Gennyes Herezacskó";
-            newClient.TrainerID = "asd647";
-            newClient.Verified = false;
-            newClient.Age = 27;
-            newClient.BeenWorkingOutFor = 0;
-
-
-            trainerLogic.AddClientToTrainer(newClient, id);
+            trainerLogic.FillDbWithSamples();
 
             foreach (var item in trainerLogic.GetTrainers())
             {
-                Console.WriteLine(item.TrainerName);
+                Console.WriteLine(item.TrainerName); 
                 foreach(var client in item.GymClients)
                 {
-                    Console.WriteLine(client.FullName);
+                    Console.WriteLine("Client: " + client.FullName);
                 }
             }
 
