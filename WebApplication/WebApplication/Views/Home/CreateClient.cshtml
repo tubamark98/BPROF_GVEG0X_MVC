@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateClient</title>
+</head>
+<body>
+    <h1>Új Kliens</h1>
+    <form action="/Home/CreateClient" method="post">
+        Név:
+        <br />
+        <input type="text" name="FullName" />
+        <br />
+
+        Kor:
+        <br />
+        <input type="number" name="Age" />
+        <br />
+
+        Nem:
+        <br />
+        <input type="@Models.Genders" name="Gender" />
+        <br />
+
+        Mennyit edzett:
+        <br />
+        <input type="number" name="BeenWorkingOutFor" />
+        <br />
+
+        Versenyekre jár:
+        <br />
+        <input type="checkbox" name="Verified" />
+        <br />
+
+        <br />
+        <input type="submit" name="Create" />
+        <br />
+
+    </form>
+</body>
+</html>

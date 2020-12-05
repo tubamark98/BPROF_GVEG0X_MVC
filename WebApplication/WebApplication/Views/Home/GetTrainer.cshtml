@@ -1,0 +1,21 @@
+﻿@model Models.Trainer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetTrainer</title>
+</head>
+<body>
+    <h1>@Model.TrainerName</h1>
+    <a href="/Home/Index">Vissza a főoldalra</a>
+    @foreach(var item in Model.GymClients)
+    {
+        <h2>@item.FullName</h2>
+    }
+</body>
+</html>
