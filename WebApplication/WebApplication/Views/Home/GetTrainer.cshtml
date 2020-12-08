@@ -11,11 +11,19 @@
     <title>GetTrainer</title>
 </head>
 <body>
-    <h1>@Model.TrainerName</h1>
     <a href="/Home/Index">Vissza a főoldalra</a>
-    @foreach(var item in Model.GymClients)
+    <br />
+    <a href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+    <br />
+    <h1>@Model.TrainerName</h1>
+
+    <a href="/Home/CreateClient?trainerId=@Model.TrainerID">Adjon hozzá az edzőhöz egy új Klienst</a>
+    <br />
+    @foreach (var item in Model.GymClients)
     {
-        <h2>@item.FullName</h2>
+        <h2>@item.ToString()</h2>
+        <a href="/Home/DeleteClient?clientId=@item.GymID">Tőrlés</a>
     }
+
 </body>
 </html>

@@ -25,7 +25,14 @@ namespace Models
         public int BeenWorkingOutFor { get; set; }
         public bool Verified { get; set; }
         public string TrainerID { get; set; }
+
+        public override string ToString()
+        {
+            return $"{GymID}-{FullName}-{Age}-{Gender}-{BeenWorkingOutFor}-{Verified}";
+        }
+
         [NotMapped]
         public virtual Trainer Trainer { get; set; }
+        public virtual ICollection<WorkoutDetail> WorkoutDetails { get; set; }
     }
 }

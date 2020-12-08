@@ -1,0 +1,24 @@
+﻿@model IQueryable<Models.Trainer>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListTrainer</title>
+</head>
+<body>
+    <a href="/Home/Index">Vissza a főoldalra</a>
+    <br />
+    <a href="/Home/CreateTrainer">Hozzon létre új Edzőt</a>
+    @foreach (var item in Model)
+    {
+        <br />
+        <a href="/Home/GetTrainer?trainerId=@item.TrainerID">@item.TrainerName</a>
+        <a href="/Home/DeleteTrainer?trainerId=@item.TrainerID">Edző törlése</a>
+    }
+</body>
+</html>

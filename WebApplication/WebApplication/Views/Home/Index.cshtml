@@ -1,5 +1,4 @@
-﻿@model IQueryable<Models.Trainer>
-@{ Layout = null;}
+﻿@{ Layout = null;}
 
 <!DOCTYPE html>
 
@@ -9,16 +8,10 @@
     <title>Index</title>
 </head>
 <body>
-    <h1>Összes Edző</h1>
+    <h1>Fő oldal</h1>
     <a href="/Home/Init">Adja hozzá az adatokat</a>
     <br />
-    <a href="/Home/CreateTrainer">Hozzon létre új Edzőt</a>
-    <br />
-    @foreach (var item in Model)
-    {
-        <a href="/Home/GetTrainer?trainerId=@item.TrainerID">@item.TrainerName</a>
-
-    }
+    <a href="/Home/ListTrainer">Listázza az edzőket</a>
 </body>
 
 </html>
