@@ -1,0 +1,5 @@
+﻿Update Trainer doesn't save its clients for some reason xd
+adding css stuff
+style the living shit out of the websites
+add non crud methods
+implement WorkoutDetails
