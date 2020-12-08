@@ -51,7 +51,7 @@ namespace Repos
 
             foreach (var item in newItem.GymClients)
                 oldItem.GymClients.Add(item);
-
+             
             Save();
         }
     }

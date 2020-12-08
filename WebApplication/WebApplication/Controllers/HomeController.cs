@@ -88,7 +88,7 @@ namespace WebApplication.Controllers
         public IActionResult UpdateClient(GymClient newClient)
         {
             clientLogic.UpdateClient(newClient.GymID, newClient);
-            return View(nameof(GetTrainer), new { newClient.TrainerID});
+            return RedirectToAction(nameof(GetTrainer), new { newClient.TrainerID});
         }
 
         [HttpGet]
