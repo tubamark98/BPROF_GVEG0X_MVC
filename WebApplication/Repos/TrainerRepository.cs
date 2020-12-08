@@ -20,6 +20,7 @@ namespace Repos
         public void Delete(Trainer item)
         {
             context.Trainers.Remove(item);
+            Save();
         }
 
         public void Delete(string id)
