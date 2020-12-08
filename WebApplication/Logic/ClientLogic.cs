@@ -34,7 +34,7 @@ namespace Logic
         }
         public GymClient GetClient(string clientId)
         {
-            return clientRepo.Read(clientId);
+            return clientRepo.GetItem(clientId);
         }
         public void UpdateClient(string clientId, GymClient newClient)
         {

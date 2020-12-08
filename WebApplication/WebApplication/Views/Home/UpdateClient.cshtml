@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model Models.GymClient
 @{
     Layout = null;
 }
@@ -8,27 +8,23 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>CreateClient</title>
+    <title>UpdateClient</title>
 </head>
 <body>
-    <h1>Új Kliens</h1>
-    <br />
-    <a href="/Home/GetTrainer?trainerId=@Model">Vissza az edzőnkhöz</a>
-    <br />
     <form action="/Home/CreateClient" method="post">
         Név:
         <br />
-        <input type="text" name="FullName" />
+        <input type="text" value="@Model.FullName" name="FullName" />
         <br />
 
         Kor:
         <br />
-        <input type="number" name="Age" />
+        <input type="number" value="@Model.Age" name="Age" />
         <br />
 
         Nem:
         <br />
-        <select name="type">
+        <select name="type" value="@Model.Gender">
             <option value="Nő">Nő</option>
             <option value="Férfi">Férfi</option>
         </select>
@@ -36,18 +32,20 @@
         <br />
         Mennyit edzett:
         <br />
-        <input type="number" name="BeenWorkingOutFor" />
+        <input type="number" value="@Model.BeenWorkingOutFor" name="BeenWorkingOutFor" />
         <br />
 
         Versenyekre jár:
         <br />
-        <input type="checkbox" name="Verified" />
+        <input type="checkbox" value="@Model.Verified" name="Verified" />
         <br />
 
-        <input type="hidden" name="trainerId" value="@Model" />
+        <input type="hidden" value="@Model.GymID" name="clientId" />
+        <input type="hidden" value="@Model.TrainerID" name="trainerId" />
         <input type="submit" name="Create" />
         <br />
 
     </form>
+
 </body>
 </html>

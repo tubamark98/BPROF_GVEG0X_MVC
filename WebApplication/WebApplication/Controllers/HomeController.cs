@@ -85,9 +85,9 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateClient(string clientId, GymClient newClient)
+        public IActionResult UpdateClient(GymClient newClient)
         {
-            clientLogic.UpdateClient(clientId, newClient);
+            clientLogic.UpdateClient(newClient.GymID, newClient);
             return View(nameof(GetTrainer), new { newClient.TrainerID});
         }
 
@@ -98,10 +98,10 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateTrainer(string trainerId, Trainer newTrainer)
+        public IActionResult UpdateTrainer(Trainer newTrainer)
         {
-            trainerLogic.UpdateTrainer(trainerId, newTrainer);
-            return RedirectToAction(nameof(GetTrainer), new { trainerId });
+            trainerLogic.UpdateTrainer(newTrainer.TrainerID, newTrainer);
+            return RedirectToAction(nameof(GetTrainer), new { newTrainer.TrainerID });
         }
 
         #endregion

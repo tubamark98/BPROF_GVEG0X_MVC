@@ -35,7 +35,7 @@ namespace Logic
         }
         public Trainer GetTrainer(string trainerId)
         {
-            return trainerRepo.Read(trainerId);
+            return trainerRepo.GetItem(trainerId);
         }
         public void UpdateTrainer(string trainerId, Trainer newTrainer)
         {

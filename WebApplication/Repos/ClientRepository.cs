@@ -40,6 +40,7 @@ namespace Repos
             oldItem.Gender = newItem.Gender;
             oldItem.BeenWorkingOutFor = newItem.BeenWorkingOutFor;
             oldItem.Verified = newItem.Verified;
+            oldItem.TrainerID = newItem.TrainerID;
             Save();
         }
 
@@ -50,12 +51,7 @@ namespace Repos
 
         public void Delete(string id)
         {
-            Delete(Read(id));
-        }
-
-        public GymClient Read(string id)
-        {
-            return context.GymClients.FirstOrDefault(t => t.GymID == id);
+            Delete(GetItem(id));
         }
     }
 }

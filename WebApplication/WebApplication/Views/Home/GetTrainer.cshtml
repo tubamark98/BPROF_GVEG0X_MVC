@@ -22,6 +22,7 @@
     @foreach (var item in Model.GymClients)
     {
         <h2>@item.ToString()</h2>
+        <a href="/Home/UpdateClient?clientId=@item.GymID">Update</a>
         <a href="/Home/DeleteClient?clientId=@item.GymID">Tőrlés</a>
     }
 

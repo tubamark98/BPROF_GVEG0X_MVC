@@ -25,7 +25,7 @@ namespace Repos
 
         public void Delete(string id)
         {
-            Delete(Read(id));
+            Delete(GetItem(id));
         }
 
         public Trainer GetItem(string trainerID)
@@ -36,11 +36,6 @@ namespace Repos
         public IQueryable<Trainer> Read()
         {
             return context.Trainers.AsQueryable();
-        }
-
-        public Trainer Read(string id)
-        {
-            return context.Trainers.FirstOrDefault(t => t.TrainerID == id);
         }
 
         public void Save()
