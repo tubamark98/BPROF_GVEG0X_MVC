@@ -18,15 +18,16 @@ namespace WebApplication.Controllers
             this.trainerLogic = trainerLogic;
             this.clientLogic = clientLogic;
         }
+        
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         public IActionResult Init()
         {
             trainerLogic.FillDbWithSamples();
             return RedirectToAction(nameof(Index));
-        }
-        public IActionResult Index()
-        {
-            return View();
         }
 
         #region Create Methods
