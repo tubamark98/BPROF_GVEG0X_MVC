@@ -36,9 +36,9 @@ namespace Logic
         {
             return clientRepo.Read(clientId);
         }
-        public void UpdateClient(string clientId, GymClient newTrainer)
+        public void UpdateClient(string clientId, GymClient newClient)
         {
-            clientRepo.Update(clientId, newTrainer);
+            clientRepo.Update(clientId, newClient);
         }
 
         #endregion

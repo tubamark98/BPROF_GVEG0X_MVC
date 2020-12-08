@@ -78,8 +78,31 @@ namespace WebApplication.Controllers
         #endregion
 
         #region Update Methods
+        [HttpGet]
+        public IActionResult UpdateClient(string clientId)
+        {
+            return View(clientLogic.GetClient(clientId));
+        }
 
+        [HttpPost]
+        public IActionResult UpdateClient(string clientId, GymClient newClient)
+        {
+            clientLogic.UpdateClient(clientId, newClient);
+            return View(nameof(GetTrainer), new { newClient.TrainerID});
+        }
 
+        [HttpGet]
+        public IActionResult UpdateTrainer(string trainerId)
+        {
+            return View(trainerLogic.GetTrainer(trainerId));
+        }
+
+        [HttpPost]
+        public IActionResult UpdateTrainer(string trainerId, Trainer newTrainer)
+        {
+            trainerLogic.UpdateTrainer(trainerId, newTrainer);
+            return RedirectToAction(nameof(GetTrainer), new { trainerId });
+        }
 
         #endregion
 
