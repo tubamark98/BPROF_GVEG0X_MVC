@@ -10,10 +10,12 @@ namespace Models
     {
         calisthenics, crossfit, weightlifting, powerlifting
     }
+
     public enum ContestDiets
     {
         carbCycling, intermittentFasting, lowCarb, 
     }
+
     public class WorkoutDetail
     {
         [Key]

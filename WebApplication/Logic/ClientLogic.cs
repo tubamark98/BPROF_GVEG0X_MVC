@@ -11,11 +11,15 @@ namespace Logic
     {
         IRepoBase<GymClient> clientRepo;
         IRepoBase<Trainer> trainerRepo;
-
-        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<Trainer> trainerRepo)
+        IRepoBase<WorkoutDetail> detailRepo;
+        IRepoBase<ExtraInfo> infoRepo;
+        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<Trainer> trainerRepo,
+            IRepoBase<WorkoutDetail> detailRepo, IRepoBase<ExtraInfo> infoRepo)
         {
             this.clientRepo = clientRepo;
             this.trainerRepo = trainerRepo;
+            this.detailRepo = detailRepo;
+            this.infoRepo = infoRepo;
         }
 
         #region CRUD methods
@@ -28,14 +32,17 @@ namespace Logic
         {
             this.clientRepo.Delete(clientId);
         }
+
         public IQueryable<GymClient> GetClients()
         {
             return clientRepo.Read();
         }
+
         public GymClient GetClient(string clientId)
         {
             return clientRepo.GetItem(clientId);
         }
+
         public void UpdateClient(string clientId, GymClient newClient)
         {
             clientRepo.Update(clientId, newClient);

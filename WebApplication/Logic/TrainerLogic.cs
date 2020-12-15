@@ -11,11 +11,16 @@ namespace Logic
     {
         IRepoBase<GymClient> clientRepo;
         IRepoBase<Trainer> trainerRepo;
+        IRepoBase<WorkoutDetail> detailRepo;
+        IRepoBase<ExtraInfo> infoRepo;
 
-        public TrainerLogic(IRepoBase<GymClient> clientRepo, IRepoBase<Trainer> trainerRepo)
+        public TrainerLogic(IRepoBase<GymClient> clientRepo, IRepoBase<Trainer> trainerRepo,
+                            IRepoBase<WorkoutDetail> detailRepo, IRepoBase<ExtraInfo> infoRepo)
         {
             this.clientRepo = clientRepo;
             this.trainerRepo = trainerRepo;
+            this.detailRepo = detailRepo;
+            this.infoRepo = infoRepo;
         }
 
 
