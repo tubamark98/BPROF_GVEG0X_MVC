@@ -57,7 +57,6 @@ namespace Repos
                 //newItem.GymClients.Add(item);
             }
                 
-             
             Save();
         }
     }

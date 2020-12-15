@@ -40,5 +40,8 @@ namespace Data
         }
         public DbSet<GymClient> GymClients { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
+        public DbSet<ExtraInfo> ExtraInfos { get; set; }
+        public DbSet<WorkoutDetail> WorkoutDetails { get; set; }
+
     }
 }
