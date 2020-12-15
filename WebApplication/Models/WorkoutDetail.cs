@@ -20,6 +20,7 @@ namespace Models
         public string WorkoutId { get; set; }
         public WorkoutTypes WorkoutType { get; set; }
         public ContestDiets ContestDiets { get; set; }
+
         [NotMapped]
         public virtual GymClient GymClient { get; set; }
         public virtual ICollection<ExtraInfo> AdditionalInfo { get; set; }
