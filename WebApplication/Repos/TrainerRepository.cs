@@ -47,16 +47,7 @@ namespace Repos
         {
             var oldItem = GetItem(trainedID);
             oldItem.TrainerName = newItem.TrainerName;
-            ICollection<GymClient> gymClients = oldItem.GymClients;
-
-            oldItem.GymClients.Clear();
-
-            foreach (var item in gymClients)
-            {
-                oldItem.GymClients.Add(item);
-                //newItem.GymClients.Add(item);
-            }
-                
+            
             Save();
         }
     }

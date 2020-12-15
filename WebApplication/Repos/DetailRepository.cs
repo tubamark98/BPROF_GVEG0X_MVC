@@ -48,12 +48,6 @@ namespace Repos
             oldItem.ContestDiets = newItem.ContestDiets;
             oldItem.WorkoutType = newItem.WorkoutType;
 
-            ICollection<ExtraInfo> extraInfos = oldItem.AdditionalInfo;
-            oldItem.AdditionalInfo.Clear();
-
-            foreach (var item in extraInfos)
-                oldItem.AdditionalInfo.Add(item);
-
             Save();
         }
     }
