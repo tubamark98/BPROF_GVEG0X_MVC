@@ -22,8 +22,13 @@ namespace WebApplication
             services.AddMvc((opt)=> opt.EnableEndpointRouting =false);
             services.AddTransient<TrainerLogic, TrainerLogic>();
             services.AddTransient<ClientLogic, ClientLogic>();
+            services.AddTransient<WorkoutDetailLogic, WorkoutDetailLogic>();
+            services.AddTransient<ExtraInfoLogic, ExtraInfoLogic>();
+
             services.AddTransient<IRepoBase<GymClient>, ClientRepository>();
             services.AddTransient<IRepoBase<Trainer>, TrainerRepository>();
+            services.AddTransient<IRepoBase<WorkoutDetail>, DetailRepository>();
+            services.AddTransient<IRepoBase<ExtraInfo>, InfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
