@@ -15,8 +15,8 @@ namespace ConsoleApp
             TrainerRepository trainerRepo = new TrainerRepository();
             ClientRepository clientRepo = new ClientRepository();
 
-            TrainerLogic trainerLogic = new TrainerLogic(clientRepo, trainerRepo);
-            ClientLogic clientLogic = new ClientLogic(clientRepo, trainerRepo);
+            TrainerLogic trainerLogic = new TrainerLogic(trainerRepo);
+            ClientLogic clientLogic = new ClientLogic(clientRepo);
 
             trainerLogic.FillDbWithSamples();
 

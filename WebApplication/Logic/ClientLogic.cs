@@ -10,16 +10,10 @@ namespace Logic
     public class ClientLogic
     {
         IRepoBase<GymClient> clientRepo;
-        IRepoBase<Trainer> trainerRepo;
-        IRepoBase<WorkoutDetail> detailRepo;
-        IRepoBase<ExtraInfo> infoRepo;
-        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<Trainer> trainerRepo,
-            IRepoBase<WorkoutDetail> detailRepo, IRepoBase<ExtraInfo> infoRepo)
+
+        public ClientLogic(IRepoBase<GymClient> clientRepo)
         {
             this.clientRepo = clientRepo;
-            this.trainerRepo = trainerRepo;
-            this.detailRepo = detailRepo;
-            this.infoRepo = infoRepo;
         }
 
         #region CRUD methods

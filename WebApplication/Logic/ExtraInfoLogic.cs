@@ -9,16 +9,10 @@ namespace Logic
 {
     public class ExtraInfoLogic
     {
-        IRepoBase<GymClient> clientRepo;
-        IRepoBase<Trainer> trainerRepo;
-        IRepoBase<WorkoutDetail> detailRepo;
         IRepoBase<ExtraInfo> infoRepo;
-        public ExtraInfoLogic(IRepoBase<GymClient> clientRepo, IRepoBase<Trainer> trainerRepo,
-            IRepoBase<WorkoutDetail> detailRepo, IRepoBase<ExtraInfo> infoRepo)
+
+        public ExtraInfoLogic(IRepoBase<ExtraInfo> infoRepo)
         {
-            this.clientRepo = clientRepo;
-            this.trainerRepo = trainerRepo;
-            this.detailRepo = detailRepo;
             this.infoRepo = infoRepo;
         }
 

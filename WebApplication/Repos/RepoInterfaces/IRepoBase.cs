@@ -14,6 +14,5 @@ namespace Repos
         void Update(string gymID, T newItem);
         T GetItem(string gymID);
         void Save();
-
     }
 }

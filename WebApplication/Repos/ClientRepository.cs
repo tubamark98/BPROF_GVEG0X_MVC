@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Repos
 {
-    public class ClientRepository : IRepoBase<Models.GymClient>
+    public class ClientRepository : IRepoBase<GymClient>
     {
-        readonly GymContext context = new GymContext();
+        GymContext context = new GymContext();
         public void Add(GymClient item)
         {
             context.GymClients.Add(item);
