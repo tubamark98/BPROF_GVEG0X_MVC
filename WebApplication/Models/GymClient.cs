@@ -34,5 +34,6 @@ namespace Models
         [NotMapped]
         public virtual Trainer Trainer { get; set; }
         public virtual ICollection<WorkoutDetail> WorkoutDetails { get; set; }
+        public virtual ICollection<ExtraInfo> AdditionalInfo { get; set; }
     }
 }

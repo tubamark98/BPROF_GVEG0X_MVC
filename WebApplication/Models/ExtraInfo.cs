@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Models
@@ -11,6 +12,7 @@ namespace Models
         public string InfoId { get; set; }
         public string Information { get; set; }
 
-        public virtual WorkoutDetail WorkoutDetail{get;set;}
+        [NotMapped]
+        public virtual GymClient GymClient{get;set;}
     }
 }

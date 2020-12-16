@@ -25,6 +25,5 @@ namespace Models
 
         [NotMapped]
         public virtual GymClient GymClient { get; set; }
-        public virtual ICollection<ExtraInfo> AdditionalInfo { get; set; }
     }
 }
