@@ -77,7 +77,7 @@ namespace WebApplication.Controllers
         {
             extraInfo.InfoId = Guid.NewGuid().ToString();
             clientLogic.AddInfoToClient(extraInfo, clientId);
-            return RedirectToAction(nameof(GetTrainer), new { extraInfo.GymClient.TrainerID });
+            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(clientId).TrainerID });
         }
 
         [HttpGet]

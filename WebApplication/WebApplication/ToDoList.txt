@@ -1,4 +1,4 @@
 ﻿adding css stuff
 add non crud methods
 non crud tests
-adding workoutdetail and extrainfo into the website part
+detailLogic and infoLogic dont store stuff properly

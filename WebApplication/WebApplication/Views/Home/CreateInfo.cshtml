@@ -1,0 +1,26 @@
+﻿@Model string 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateInfo</title>
+</head>
+<body>
+    <form action="/Home/CreateInfo" method="post">
+        Információ:
+        <br />
+        <input type="text" name="Information" />
+        <br />
+
+        <input type="hidden" name="clientId" value="@Model" />
+        <input type="submit" name="Create" />
+        <br />
+
+    </form>
+</body>
+</html>

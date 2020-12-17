@@ -37,12 +37,17 @@
             <h3> nincsen workoutdetail</h3>
             <a href="/Home/CreateDetail?clientId=@item.GymID">Adjon hozza egy WorkoutDetails-t</a>
         }
-
+        <br />
+        <a href="/Home/CreateInfo?clientId=@item.GymID">Adjon hozza egy ExtraInfo-t</a>
         @foreach (var extra in item.AdditionalInfo)
         {
             <br />
             <h3>@extra.Information</h3>
+            <a href="/Home/DeleteInfo?@extra.InfoId"> Torolje az ExtraInfo-t</a>
+            <a href="/Home/UpdateInfo?@extra.InfoId"> Updatelje az ExtraInfo-t</a>
+
         }
+
 
         <br />
         <a href="/Home/UpdateClient?clientId=@item.GymID">UpdateClient</a>
