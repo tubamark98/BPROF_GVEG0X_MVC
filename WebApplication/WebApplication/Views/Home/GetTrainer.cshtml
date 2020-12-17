@@ -22,8 +22,31 @@
     @foreach (var item in Model.GymClients)
     {
         <h2>@item.ToString()</h2>
-        <a href="/Home/UpdateClient?clientId=@item.GymID">Update</a>
-        <a href="/Home/DeleteClient?clientId=@item.GymID">Tőrlés</a>
+        <br />
+        @if (item.WorkoutDetail != null)
+        {
+            <h3>@item.WorkoutDetail.WorkoutType</h3>
+            <h3>@item.WorkoutDetail.ContestDiets</h3>
+            <br />
+            <a href="/Home/UpdateDetail?detailId=@item.WorkoutDetail.WorkoutId">Update WorkoutDetails</a>
+            <br />
+            <a href="/Home/DeleteDetail?detailId=@item.WorkoutDetail.WorkoutId">Tőrlés WorkoutDetails</a>
+        }
+        else
+        {
+            <h3> nincsen workoutdetail</h3>
+            <a href="/Home/CreateDetail?clientId=@item.GymID">Adjon hozza egy WorkoutDetails-t</a>
+        }
+
+        @foreach (var extra in item.AdditionalInfo)
+        {
+            <br />
+            <h3>@extra.Information</h3>
+        }
+
+        <br />
+        <a href="/Home/UpdateClient?clientId=@item.GymID">UpdateClient</a>
+        <a href="/Home/DeleteClient?clientId=@item.GymID">TőrlésClient</a>
     }
 
 </body>

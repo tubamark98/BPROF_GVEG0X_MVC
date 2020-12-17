@@ -10,10 +10,21 @@ namespace Logic
     public class TrainerLogic
     {
         IRepoBase<Trainer> trainerRepo;
+        IRepoBase<GymClient> clientRepo;
+        IRepoBase<WorkoutDetail> detailRepo;
+        IRepoBase<ExtraInfo> infoRepo;
 
-        public TrainerLogic(IRepoBase<Trainer> trainerRepo)
+        public TrainerLogic()
+        {
+            this.trainerRepo = new TrainerRepository();
+        }
+        public TrainerLogic(IRepoBase<Trainer> trainerRepo, IRepoBase<GymClient> clientRepo,
+            IRepoBase<WorkoutDetail> detailRepo, IRepoBase<ExtraInfo> infoRepo)
         {
             this.trainerRepo = trainerRepo;
+            this.clientRepo = clientRepo;
+            this.detailRepo = detailRepo;
+            this.infoRepo = infoRepo;
         }
 
 
@@ -111,6 +122,25 @@ namespace Logic
                 Verified = false,
                 Age = 12,
                 BeenWorkingOutFor = 0
+            };
+
+            WorkoutDetail d1 = new WorkoutDetail()
+            {
+                WorkoutId = "detail00",
+                ContestDiets = ContestDiets.lowCarb,
+                WorkoutType = WorkoutTypes.calisthenics
+            };
+            WorkoutDetail d2 = new WorkoutDetail()
+            {
+                WorkoutId = "detail01",
+                ContestDiets = ContestDiets.intermittentFasting,
+                WorkoutType = WorkoutTypes.powerlifting
+            };
+            WorkoutDetail d3 = new WorkoutDetail()
+            {
+                WorkoutId = "detail02",
+                ContestDiets = ContestDiets.carbCycling,
+                WorkoutType = WorkoutTypes.calisthenics
             };
 
             AddTrainer(t1);

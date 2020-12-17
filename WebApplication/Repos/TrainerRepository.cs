@@ -9,7 +9,7 @@ namespace Repos
 {
     public class TrainerRepository : IRepoBase<Models.Trainer>
     {
-        readonly GymContext context = new GymContext();
+        GymContext context = new GymContext();
 
         public void Add(Trainer item)
         {

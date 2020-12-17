@@ -29,15 +29,21 @@ namespace Data
 
             }
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<GymClient>(entity =>
             {
                 entity.HasOne(client => client.Trainer).WithMany(trainer => trainer.GymClients).HasForeignKey(client => client.TrainerID);
+                
             });
+            //modelBuilder.Entity<GymClient>(entity =>
+            //{
+            //    entity.HasOne(client => client.WorkoutDetail).WithOne( work => work.GymClient).HasForeignKey<GymClient>(x => x.GymID);
+            //});
         }
+       
         public DbSet<GymClient> GymClients { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<ExtraInfo> ExtraInfos { get; set; }

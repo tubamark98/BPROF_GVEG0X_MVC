@@ -13,7 +13,7 @@ namespace Models
 
     public enum ContestDiets
     {
-        carbCycling, intermittentFasting, lowCarb, 
+        carbCycling, intermittentFasting, lowCarb
     }
 
     public class WorkoutDetail
@@ -22,6 +22,7 @@ namespace Models
         public string WorkoutId { get; set; }
         public WorkoutTypes WorkoutType { get; set; }
         public ContestDiets ContestDiets { get; set; }
+        public string GymID { get; set; }
 
         [NotMapped]
         public virtual GymClient GymClient { get; set; }

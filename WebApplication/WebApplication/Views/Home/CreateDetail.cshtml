@@ -1,0 +1,41 @@
+﻿@model string
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateDetail</title>
+</head>
+<body>
+    <br />
+    <form action="/Home/CreateDetail" method="post">
+        Edzés típusa
+        <br />
+        <select name="WorkoutTypes">
+            <option value="calisthenics">calisthenics</option>
+            <option value="weightlifting">weightlifting</option>
+            <option value="powerlifting">powerlifting</option>
+            <option value="crossfit">crossfit</option>
+        </select>
+
+        
+        <br />
+
+        Diétája:
+        <select name="ContestDiets">
+            <option value="carbCycling">carbCycling</option>
+            <option value="intermittentFasting">intermittentFasting</option>
+            <option value="lowCarb">lowCarb</option>
+        </select>
+
+        <input type="hidden" name="clientId" value="@Model" />
+        <input type="submit" name="Create" />
+        <br />
+
+    </form>
+</body>
+</html>

@@ -1,4 +1,4 @@
 ﻿adding css stuff
-style the living shit out of the websites
 add non crud methods
-implement logic without breaking everything
+non crud tests
+adding workoutdetail and extrainfo into the website part

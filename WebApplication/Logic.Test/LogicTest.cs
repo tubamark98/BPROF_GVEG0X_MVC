@@ -128,7 +128,7 @@ namespace Logic.Test
         [Test]
         public void TrainerAddMethod()
         {
-            TrainerLogic trainerLogic = new TrainerLogic(trainerRepository.Object);
+            TrainerLogic trainerLogic = new TrainerLogic(trainerRepository.Object, clientRepository.Object, detailRepository.Object, infoRepository.Object);
 
             Trainer trainer = new Trainer { TrainerID = "sasfalkon", TrainerName = "Ron melléfoly" };
             trainerLogic.AddTrainer(trainer);
@@ -195,6 +195,14 @@ namespace Logic.Test
 
             infoRepository.Verify(x => x.Delete(It.IsAny<string>()), Times.Once);
         }
+        #endregion
+
+        #region 3 Non-Crud methods
+
+
+
+
+
 
         #endregion
     }
