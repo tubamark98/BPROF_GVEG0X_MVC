@@ -53,3 +53,14 @@ h1, h2, h3, h4{
     margin-right: auto;
     width: 50%;
 }
+.statistics {
+    font-size: 22px;
+    text-align: center;
+    word-break: break-all;
+    color: #e76f51;
+    background-color: #264653;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}

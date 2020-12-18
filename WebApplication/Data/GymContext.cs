@@ -40,6 +40,8 @@ namespace Data
             {
                 entity.HasOne(infos => infos.GymClient).WithMany(client => client.ExtraInfos).HasForeignKey(infos => infos.GymID);
             });
+
+            //Need to clean these up 1 day
             modelBuilder.Entity<WorkoutDetail_v2>(entity =>
             {
                 entity.HasNoKey();

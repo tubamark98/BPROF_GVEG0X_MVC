@@ -37,6 +37,22 @@ namespace WebApplication.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public IActionResult Statistics()
+        {
+            Statistics statistics = new Statistics
+            {
+                AverageAgeValue = trainerLogic.AverageAge(),
+                AmountOfTrainers = trainerLogic.AmountOfTrainers(),
+                AmountOfClients = trainerLogic.AmountOfClients(),
+                AmountOfExtraInfo = trainerLogic.AmountOfExtraInfo(),
+                GenderPercentage = trainerLogic.GenderPercentage(),
+                AmountOfAlcoholists = clientLogic.AmountOfAlcoholists(),
+                LongestInfo = clientLogic.LongestInfo()
+            };
+            return View(nameof(Statistics), statistics);
+        }
+
         #region Create Methods
         [HttpGet]
         public IActionResult CreateClient(string trainerId)

@@ -1,0 +1,25 @@
+﻿@model Models.Statistics
+    <h1>A statisztikák oldala</h1>
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+</nav>
+
+<br />
+<p class="statistics">Átlagos életkor: @Model.AverageAgeValue</p>
+<p class="statistics">Összes Kliens: @Model.AmountOfClients</p>
+<p class="statistics">Összes Edző: @Model.AmountOfTrainers</p>
+<p class="statistics">Összes ExtraInfo: @Model.AmountOfExtraInfo</p>
+<p class="statistics">Alkoholisták száma: @Model.AmountOfAlcoholists</p>
+<p class="statistics">Leghosszabb info: @Model.LongestInfo</p>
+<p class="statistics">Nemek eloszlása: </p>
+<ul class="list-group list-group-horizontal">
+    <li class="statistics">Nő</li>
+    <li class="statistics">Férfi</li>
+    <li class="statistics">Helikopter</li>
+</ul>
+<ul class="list-group list-group-horizontal">
+    <li class="statistics">@Model.GenderPercentage[0]%</li>
+    <li class="statistics">@Model.GenderPercentage[1]%</li>
+    <li class="statistics">@Model.GenderPercentage[2]%</li>
+</ul>

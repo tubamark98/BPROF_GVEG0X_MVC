@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Content\Images\" />
     <Folder Include="Controllers\" />
 	  
   </ItemGroup>

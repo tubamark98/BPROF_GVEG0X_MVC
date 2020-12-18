@@ -47,6 +47,106 @@ namespace Logic
 
         #region Non-CRUD methods
 
+        public float AverageAge()
+        {
+            int counter = 0;
+            float value = 0;
+
+            var something = GetTrainers().ToList();
+            foreach(var item in something)
+            {
+                foreach(var client in item.GymClients)
+                {
+                    value += client.Age;
+                    counter++;
+                }
+            }
+
+            if (value == 0)
+                return 0;
+            else
+                return value / counter;
+        }
+
+        public int[] GenderPercentage()
+        {
+            int[] something = new int[3];
+            int counter = 0;
+            for(int i=0;i<something.Length;i++)
+            {
+                something[i] = 0;
+            }
+            var helper = GetTrainers();
+
+            foreach (var item in helper)
+            {
+                foreach (var client in item.GymClients)
+                {
+                    if(client.Gender == Genders.Nő)
+                    {
+                        something[0]++;
+                    }
+                    else if(client.Gender == Genders.Férfi)
+                    {
+                       something[1]++;
+                    }
+                    else
+                    {
+                        something[2]++;
+                    }
+                    counter++;
+                }
+            }
+
+            for (int i = 0; i < something.Length; i++)
+            {
+                if(something[i] == 0)
+                    something[i] = 0;
+                else
+                    something[i] = (something[i]*100)/counter;
+            }
+
+            return something;
+        }
+
+        public int AmountOfTrainers()
+        {
+            int counter = 0;
+            var something = GetTrainers().ToList();
+            foreach (var item in something)
+            {
+                counter++;
+            }
+            return counter;
+        }
+
+        public int AmountOfClients()
+        {
+            int counter = 0;
+            var something = GetTrainers().ToList();
+            foreach (var item in something)
+            {
+                foreach (var client in item.GymClients)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+        public int AmountOfExtraInfo()
+        {
+            int counter = 0;
+            var something = GetTrainers().ToList();
+            foreach (var item in something)
+            {
+                foreach (var client in item.GymClients)
+                {
+                    foreach (var info in client.ExtraInfos)
+                        counter++;
+                }
+            }
+            return counter;
+        }
         public void AddClientToTrainer(GymClient gymClient, string trainerId)
         {
             GetTrainer(trainerId).GymClients.Add(gymClient);

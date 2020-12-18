@@ -26,7 +26,6 @@ namespace Models
         public int BeenWorkingOutFor { get; set; }
         public bool Verified { get; set; }
         public string TrainerID { get; set; }
-        
 
         public override string ToString()
         {
@@ -37,9 +36,10 @@ namespace Models
         public virtual Trainer Trainer { get; set; }
         public virtual ICollection<ExtraInfo> ExtraInfos { get; set; }
 
-        //deprecated
+
+
+        //both deprecated
         public virtual WorkoutDetail WorkoutDetail { get; set; }
-        
         [NotMapped]
         public virtual WorkoutDetail_v2 Detail_V2 { get; set; }
     }

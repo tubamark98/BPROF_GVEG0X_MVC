@@ -47,6 +47,44 @@ namespace Logic
         #endregion
 
         #region Non-CRUD methods
+        public string LongestInfo()
+        {
+            int counter = 0;
+            string helper = "";
+
+            var something = GetClients().ToList();
+            foreach(var item in something)
+            {
+                foreach(var info in item.ExtraInfos)
+                {
+                    if (info.Information.Length > counter)
+                    {
+                        counter = info.Information.Length;
+                        helper = info.Information;
+                    }
+                }   
+            }
+
+            return helper;
+        }
+        public int AmountOfAlcoholists()
+        {
+            int counter = 0;
+            var something = GetClients().ToList();
+            foreach (var item in something)
+            {
+                foreach(var infos in item.ExtraInfos)
+                {
+                    if (infos.Information.ToLower() == "alkoholista" ||
+                        infos.Information.ToLower() == "alkoholist" ||
+                        infos.Information.ToLower() == "alcoholist" ||
+                        infos.Information.ToLower() == "alcoholista" ||
+                        infos.Information.ToLower() == "alcoholic")
+                        counter++;
+                }
+            }
+            return counter;
+        }
 
         public void AddInfoToClient(ExtraInfo extraInfo, string clientId)
         {
@@ -60,20 +98,6 @@ namespace Logic
         {
             GetClient(clientId).ExtraInfos.Remove(extraInfo);
             clientRepo.Save();
-        }
-
-        public float AverageAgeOfClients(string trainerId)
-        {
-            var query = from clients in clientRepo.Read()
-                        where clients.Trainer.TrainerID == trainerId
-                        select clients.Age;
-
-            float helper = 0;
-            foreach (int item in query)
-            {
-                helper += item;
-            }
-            return helper / query.Count();
         }
 
         public void Valamiidkyet()
@@ -122,6 +146,9 @@ namespace Logic
             ExtraInfo i13 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Megcsalta a feleségét" };
             ExtraInfo i14 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alkoholista" };
             ExtraInfo i15 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Csukló problémái vannak" };
+            ExtraInfo i16 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alcoholist" };
+            ExtraInfo i17 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alcoholic" };
+            ExtraInfo i18 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Ez az info csak azért lett létrehozva hogy bekerüljön a leghosszabb infohoz, Hello =)"};
 
             //AddDetailToClient(d1,"test01");
             //AddDetailToClient(d2,"test02");
@@ -143,10 +170,10 @@ namespace Logic
             AddInfoToClient(i13, "test09");
             AddInfoToClient(i14, "test10");
             AddInfoToClient(i15, "test07");
-
+            AddInfoToClient(i16, "test08");
+            AddInfoToClient(i17, "test05");
+            AddInfoToClient(i18, "test10");
         }
-
-
 
         //depracated methods
 
