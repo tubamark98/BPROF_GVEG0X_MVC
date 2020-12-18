@@ -150,7 +150,7 @@ namespace WebApplication.Controllers
         public IActionResult UpdateInfo(ExtraInfo newInfo)
         {
             infoLogic.UpdateInfo(newInfo.InfoId, newInfo);
-            return RedirectToAction(nameof(GetTrainer), new { newInfo.GymClient.TrainerID });
+            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(newInfo.GymID).TrainerID });
         }
 
         [HttpGet]
