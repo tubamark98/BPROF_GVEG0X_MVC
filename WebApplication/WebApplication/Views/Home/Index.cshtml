@@ -1,17 +1,29 @@
-﻿@{ Layout = null;}
+﻿
+<h1>
+    Óbudai egyetem edzőterme
+    <small class="text-muted">(Még tervezés alatt)</small>
+</h1>
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary"  href="/Home/Init">Adatok hozzáadása</a>
+    <a class="btn btn-outline-primary"  href="/Home/ListTrainer">Edzők listája</a>
+    <a class="nav-link disabled" href="#">Login</a>
+    <a class="nav-link disabled" href="#">Register</a>
+    <a class="nav-link disabled" href="#">Admin</a>
+    <a class="nav-link disabled" href="#">Protein bolt</a>
+</nav>
 
-<!DOCTYPE html>
+<br />
+<br />
+<br />
+<h4 class="index-page-cuccli">
+    Legújabb hírek az óbudai edzőteremből
+</h4>
+<img src="@Url.Content("~/arnold1.png")"class="index-page-images" />
+<br />
+<img src="@Url.Content("~/arnold2.png")" class="index-page-images"/>
+<br />
+<img src="@Url.Content("~/arnold3.jpg")" class="index-page-images"/>
+<br />
+<img src="@Url.Content("~/arnold4.jpg")" class="index-page-images"/>
+    
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <h1>Fő oldal</h1>
-    <a href="/Home/Init">Adja hozzá az adatokat</a>
-    <br />
-    <a href="/Home/ListTrainer">Listázza az edzőket</a>
-</body>
-
-</html>

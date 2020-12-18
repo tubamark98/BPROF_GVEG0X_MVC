@@ -40,7 +40,7 @@ namespace WebApplication
             }
 
             app.UseRouting();
-
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
     }

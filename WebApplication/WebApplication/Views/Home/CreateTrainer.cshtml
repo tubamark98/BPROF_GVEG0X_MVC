@@ -1,28 +1,16 @@
-﻿
-@{
-    Layout = null;
-}
+﻿<h1>Új Edző létrehozása</h1>
 
-<!DOCTYPE html>
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+</nav>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateTrainer</title>
-</head>
-<body>
-
-    <h1>Új Edző létrehozása</h1>
-    <a href="/Home/Index">Vissza a főoldalra</a>
+<form action="/Home/CreateTrainer" method="post">
     <br />
-    <a href="/Home/ListTrainer">Vissza az edzőkhöz</a>
-    <form action="/Home/CreateTrainer" method="post">
-        Edző neve:
-        <br />
-        <input type="text" name="TrainerName" />
-        <br />
-        <input type="submit" name="Create" />
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" placeholder="Arnold swarci" name="TrainerName">
+        <label for="floatingInput">Edző neve</label>
+    </div>
+    <input type="submit" name="Create" class="btn btn-success" />
 
-    </form>
-</body>
-</html>
+</form>

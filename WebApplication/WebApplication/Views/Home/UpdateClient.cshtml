@@ -1,51 +1,37 @@
 ﻿@model Models.GymClient
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<form action="/Home/UpdateClient" method="post">
+    Név:
+    <br />
+    <input type="text" value="@Model.FullName" name="FullName" />
+    <br />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UpdateClient</title>
-</head>
-<body>
-    <form action="/Home/UpdateClient" method="post">
-        Név:
-        <br />
-        <input type="text" value="@Model.FullName" name="FullName" />
-        <br />
+    Kor:
+    <br />
+    <input type="number" value="@Model.Age" name="Age" />
+    <br />
 
-        Kor:
-        <br />
-        <input type="number" value="@Model.Age" name="Age" />
-        <br />
+    Nem:
+    <br />
+    <select name="type" value="@Model.Gender">
+        <option value="Nő">Nő</option>
+        <option value="Férfi">Férfi</option>
+    </select>
 
-        Nem:
-        <br />
-        <select name="type" value="@Model.Gender">
-            <option value="Nő">Nő</option>
-            <option value="Férfi">Férfi</option>
-        </select>
+    <br />
+    Mennyit edzett:
+    <br />
+    <input type="number" value="@Model.BeenWorkingOutFor" name="BeenWorkingOutFor" />
+    <br />
 
-        <br />
-        Mennyit edzett:
-        <br />
-        <input type="number" value="@Model.BeenWorkingOutFor" name="BeenWorkingOutFor" />
-        <br />
+    Versenyekre jár:
+    <br />
+    <input type="checkbox" value="@Model.Verified" name="Verified" />
+    <br />
 
-        Versenyekre jár:
-        <br />
-        <input type="checkbox" value="@Model.Verified" name="Verified" />
-        <br />
+    <input type="hidden" value="@Model.GymID" name="gymid" />
+    <input type="hidden" value="@Model.TrainerID" name="trainerId" />
+    <input type="submit" name="Update" />
+    <br />
 
-        <input type="hidden" value="@Model.GymID" name="gymid" />
-        <input type="hidden" value="@Model.TrainerID" name="trainerId" />
-        <input type="submit" name="Update" />
-        <br />
-
-    </form>
-
-</body>
-</html>
+</form>

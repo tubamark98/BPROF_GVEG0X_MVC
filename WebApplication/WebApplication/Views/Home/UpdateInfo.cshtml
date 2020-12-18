@@ -1,28 +1,14 @@
 ﻿@model Models.ExtraInfo
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<form action="/Home/UpdateInfo" method="post">
+    Információ:
+    <br />
+    <input type="text" name="Information" value="@Model.Information" />
+    <br />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UpdateInfo</title>
-</head>
-<body>
-    <form action="/Home/UpdateInfo" method="post">
-        Információ:
-        <br />
-        <input type="text" name="Information" value="@Model.Information"/>
-        <br />
+    <input type="hidden" name="infoId" value="@Model.InfoId" />
+    <input type="hidden" name="GymID" value="@Model.GymID" />
 
-        <input type="hidden" name="infoId" value="@Model.InfoId" />
-        <input type="hidden" name="GymID" value="@Model.GymID" />
-
-        <input type="submit" name="Update" />
-        <br />
-
-    </form>
-</body>
-</html>
+    <input type="submit" name="Update" />
+    <br />
+</form>

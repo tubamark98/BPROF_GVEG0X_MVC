@@ -1,26 +1,39 @@
 ﻿@model IQueryable<Models.Trainer>
-@{
-    Layout = null;
+
+<h1>
+    Óbudai egyetem edzőterme
+    <small class="text-muted">(Még tervezés alatt)</small>
+</h1>
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/CreateTrainer">Hozzon létre egy új Edzőt</a>
+</nav>
+<br />
+<br />
+<br />
+<br />
+
+@foreach (var item in Model)
+{
+    <ul class="list-group list-group-horizontal">
+        <li class="flex-fill">
+            <a href="/Home/GetTrainer?trainerId=@item.TrainerID" class="btn btn-info">
+                Tovább a @item.TrainerName klienseihez
+            </a>
+        </li>
+        <li class="li-listTrainer">
+            <a href="/Home/UpdateTrainer?trainerId=@item.TrainerID" class="btn btn-warning">
+                Edző adatainak módosítása
+            </a>
+        </li>
+        <li>
+             <a href="/Home/DeleteTrainer?trainerId=@item.TrainerID" class="btn btn-danger">
+                 Edző törlése
+             </a>
+        </li>
+    </ul>
+    <br />
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ListTrainer</title>
-</head>
-<body>
-    <a href="/Home/Index">Vissza a főoldalra</a>
-    <br />
-    <a href="/Home/CreateTrainer">Hozzon létre új Edzőt</a>
-    @foreach (var item in Model)
-    {
-        <br />
-        <a href="/Home/GetTrainer?trainerId=@item.TrainerID">@item.TrainerName</a>
 
-        <a href="/Home/UpdateTrainer?trainerId=@item.TrainerID">Edző adatainak módosítása</a>
-        <a href="/Home/DeleteTrainer?trainerId=@item.TrainerID">Edző törlése</a>
-    }
-</body>
-</html>

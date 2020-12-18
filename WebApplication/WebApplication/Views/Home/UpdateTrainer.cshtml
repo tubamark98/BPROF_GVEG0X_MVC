@@ -1,30 +1,16 @@
 ﻿@model Models.Trainer
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<h1>Az edző információinak megváltoztatása</h1>
+<a href="/Home/Index">Vissza a főoldalra</a>
+<br />
+<a href="/Home/GetTrainer?trainerId=@Model.TrainerID">Vissza az edzőnkhöz</a>
+<br />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UpdateTrainer</title>
-</head>
-<body>
-    <h1>Az edző információinak megváltoztatása</h1>
-    <a href="/Home/Index">Vissza a főoldalra</a>
-    <br />
-    <a href="/Home/GetTrainer?trainerId=@Model.TrainerID">Vissza az edzőnkhöz</a>
+<form action="/Home/UpdateTrainer" method="post">
+    <input type="text" value="@Model.TrainerName" name="TrainerName" />
     <br />
 
-    <form action="/Home/UpdateTrainer" method="post">
-        <input type="text" value="@Model.TrainerName" name="TrainerName" />
-        <br />
-
-        <input type="hidden" value="@Model.GymClients" name="GymClients" />
-        <input type="hidden" value="@Model.TrainerID" name="TrainerID" />
-        <input type="submit" name="Update" />
-    </form>
-
-</body>
-</html>
+    <input type="hidden" value="@Model.GymClients" name="GymClients" />
+    <input type="hidden" value="@Model.TrainerID" name="TrainerID" />
+    <input type="submit" name="Update" />
+</form>

@@ -1,53 +1,40 @@
 ﻿@model string
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateClient</title>
-</head>
-<body>
-    <h1>Új Kliens</h1>
+<h1>Új Kliens</h1>
+<br />
+<a href="/Home/GetTrainer?trainerId=@Model">Vissza az edzőnkhöz</a>
+<br />
+<form action="/Home/CreateClient" method="post">
+    Név:
     <br />
-    <a href="/Home/GetTrainer?trainerId=@Model">Vissza az edzőnkhöz</a>
+    <input type="text" name="FullName" />
     <br />
-    <form action="/Home/CreateClient" method="post">
-        Név:
-        <br />
-        <input type="text" name="FullName" />
-        <br />
 
-        Kor:
-        <br />
-        <input type="number" name="Age" />
-        <br />
+    Kor:
+    <br />
+    <input type="number" name="Age" />
+    <br />
 
-        Nem:
-        <br />
-        <select name="type">
-            <option value="Nő">Nő</option>
-            <option value="Férfi">Férfi</option>
-        </select>
+    Nem:
+    <br />
+    <select name="type">
+        <option value="Nő">Nő</option>
+        <option value="Férfi">Férfi</option>
+    </select>
 
-        <br />
-        Mennyit edzett:
-        <br />
-        <input type="number" name="BeenWorkingOutFor" />
-        <br />
+    <br />
+    Mennyit edzett:
+    <br />
+    <input type="number" name="BeenWorkingOutFor" />
+    <br />
 
-        Versenyekre jár:
-        <br />
-        <input type="checkbox" name="Verified" />
-        <br />
+    Versenyekre jár:
+    <br />
+    <input type="checkbox" name="Verified" />
+    <br />
 
-        <input type="hidden" name="trainerId" value="@Model" />
-        <input type="submit" name="Create" />
-        <br />
+    <input type="hidden" name="trainerId" value="@Model" />
+    <input type="submit" name="Create" />
+    <br />
 
-    </form>
-</body>
-</html>
+</form>
