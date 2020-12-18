@@ -39,12 +39,12 @@
         }
         <br />
         <a href="/Home/CreateInfo?clientId=@item.GymID">Adjon hozza egy ExtraInfo-t</a>
-        @foreach (var extra in item.AdditionalInfo)
+        @foreach (var extra in item.ExtraInfos)
         {
             <br />
             <h3>@extra.Information</h3>
-            <a href="/Home/DeleteInfo?@extra.InfoId"> Torolje az ExtraInfo-t</a>
-            <a href="/Home/UpdateInfo?@extra.InfoId"> Updatelje az ExtraInfo-t</a>
+            <a href="/Home/DeleteInfo?infoId=@extra.InfoId"> Torolje az ExtraInfo-t</a>
+            <a href="/Home/UpdateInfo?infoId=@extra.InfoId"> Updatelje az ExtraInfo-t</a>
 
         }
 

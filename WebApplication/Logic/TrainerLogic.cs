@@ -85,7 +85,7 @@ namespace Logic
             };
             GymClient g2 = new GymClient()
             {
-                GymID = Guid.NewGuid().ToString(),
+                GymID = "test01",
                 Gender = Genders.Férfi,
                 FullName = "Komodoros Zacsinyalogato",
                 TrainerID = "klo293",
@@ -95,7 +95,7 @@ namespace Logic
             };
             GymClient g3 = new GymClient()
             {
-                GymID = Guid.NewGuid().ToString(),
+                GymID = "test02",
                 Gender = Genders.Férfi,
                 FullName = "Arnold Zacsinegger",
                 TrainerID = "huge99",
@@ -105,7 +105,7 @@ namespace Logic
             };
             GymClient g4 = new GymClient()
             {
-                GymID = Guid.NewGuid().ToString(),
+                GymID = "test03",
                 Gender = Genders.Nő,
                 FullName = "Pesti veszettmacska",
                 TrainerID = "asd647",
@@ -115,32 +115,13 @@ namespace Logic
             };
             GymClient g5 = new GymClient()
             {
-                GymID = Guid.NewGuid().ToString(),
+                GymID = "test04",
                 Gender = Genders.Férfi,
                 FullName = "obudai kronikuskigyo",
                 TrainerID = "asd647",
                 Verified = false,
                 Age = 12,
                 BeenWorkingOutFor = 0
-            };
-
-            WorkoutDetail d1 = new WorkoutDetail()
-            {
-                WorkoutId = "detail00",
-                ContestDiets = ContestDiets.lowCarb,
-                WorkoutType = WorkoutTypes.calisthenics
-            };
-            WorkoutDetail d2 = new WorkoutDetail()
-            {
-                WorkoutId = "detail01",
-                ContestDiets = ContestDiets.intermittentFasting,
-                WorkoutType = WorkoutTypes.powerlifting
-            };
-            WorkoutDetail d3 = new WorkoutDetail()
-            {
-                WorkoutId = "detail02",
-                ContestDiets = ContestDiets.carbCycling,
-                WorkoutType = WorkoutTypes.calisthenics
             };
 
             AddTrainer(t1);

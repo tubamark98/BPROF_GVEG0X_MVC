@@ -33,6 +33,7 @@ namespace WebApplication.Controllers
         public IActionResult Init()
         {
             trainerLogic.FillDbWithSamples();
+            clientLogic.FillDbWithSamples();
             return RedirectToAction(nameof(Index));
         }
 
@@ -171,7 +172,7 @@ namespace WebApplication.Controllers
 
         public IActionResult DeleteClient(string clientId)
         {
-            var infoToDelete = clientLogic.GetClient(clientId).AdditionalInfo.ToArray();
+            var infoToDelete = clientLogic.GetClient(clientId).ExtraInfos.ToArray();
             for (int i = 0; i < infoToDelete.Length; i++)
             {
                 clientLogic.RemoveInfoFromClient(infoToDelete[i], clientId);
@@ -195,7 +196,7 @@ namespace WebApplication.Controllers
         public IActionResult DeleteDetail(string detailId)
         {
             var detailToDelete = detailLogic.GetDetail(detailId);
-            string clientId = detailToDelete.GymClient.GymID;
+            string clientId = detailToDelete.GymID;
             clientLogic.RemoveDetailFromClient(detailToDelete, clientId);
             detailLogic.DeleteDetail(detailId);
             return RedirectToAction(nameof(GetTrainer), new { detailToDelete.GymClient.TrainerID });

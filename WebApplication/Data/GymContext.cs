@@ -38,6 +38,10 @@ namespace Data
                 entity.HasOne(client => client.Trainer).WithMany(trainer => trainer.GymClients).HasForeignKey(client => client.TrainerID);
                 
             });
+            modelBuilder.Entity<ExtraInfo>(entity =>
+            {
+                entity.HasOne(infos => infos.GymClient).WithMany(client => client.ExtraInfos).HasForeignKey(infos => infos.GymID);
+            });
             //modelBuilder.Entity<GymClient>(entity =>
             //{
             //    entity.HasOne(client => client.WorkoutDetail).WithOne( work => work.GymClient).HasForeignKey<GymClient>(x => x.GymID);

@@ -18,7 +18,7 @@ namespace Repos
 
         public void Delete(WorkoutDetail item)
         {
-            context.WorkoutDetails.Add(item);
+            context.WorkoutDetails.Remove(item);
             Save();
         }
 

@@ -18,7 +18,7 @@ namespace Repos
 
         public void Delete(ExtraInfo item)
         {
-            context.ExtraInfos.Add(item);
+            context.ExtraInfos.Remove(item);
             Save();
         }
 

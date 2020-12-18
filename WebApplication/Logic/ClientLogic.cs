@@ -57,25 +57,28 @@ namespace Logic
         {
             GetClient(clientId).WorkoutDetail = new WorkoutDetail();
             GetClient(clientId).WorkoutDetail = workoutDetail;
+            GetClient(clientId).WorkoutDetail.GymID = clientId;
 
             clientRepo.Save();
         }
 
         public void AddInfoToClient(ExtraInfo extraInfo, string clientId)
         {
-            GetClient(clientId).AdditionalInfo.Add(extraInfo);
+            extraInfo.GymID = clientId;
+            GetClient(clientId).ExtraInfos.Add(extraInfo);
+
             clientRepo.Save();
         }
 
         public void RemoveDetailFromClient(WorkoutDetail workoutDetail, string clientId )
         {
-            GetClient(clientId).WorkoutDetail = null;
+            GetClient(clientId).WorkoutDetail.GymID = null;
             clientRepo.Save();
         }
 
         public void RemoveInfoFromClient(ExtraInfo extraInfo, string clientId)
         {
-            GetClient(clientId).AdditionalInfo.Remove(extraInfo);
+            GetClient(clientId).ExtraInfos.Remove(extraInfo);
             clientRepo.Save();
         }
 
@@ -101,6 +104,43 @@ namespace Logic
                         group x by x.GymClient.FullName into g
                         select g.Key;
 
+
+        }
+
+        public void FillDbWithSamples()
+        {
+            WorkoutDetail d1 = new WorkoutDetail()
+            {
+                WorkoutId = "detail00",
+                ContestDiets = ContestDiets.lowCarb,
+                WorkoutType = WorkoutTypes.calisthenics
+            };
+            WorkoutDetail d2 = new WorkoutDetail()
+            {
+                WorkoutId = "detail01",
+                ContestDiets = ContestDiets.intermittentFasting,
+                WorkoutType = WorkoutTypes.powerlifting
+            };
+            WorkoutDetail d3 = new WorkoutDetail()
+            {
+                WorkoutId = "detail02",
+                ContestDiets = ContestDiets.carbCycling,
+                WorkoutType = WorkoutTypes.calisthenics
+            };
+
+            ExtraInfo i1 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret lábazni" };
+            ExtraInfo i2 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "váll problémái vannak" };
+            ExtraInfo i3 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret élni" };
+            ExtraInfo i4 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Depressziós" };
+
+            AddDetailToClient(d1,"test01");
+            AddDetailToClient(d2,"test02");
+            AddDetailToClient(d3,"test03");
+
+            AddInfoToClient(i1, "test01");
+            AddInfoToClient(i2, "test02");
+            AddInfoToClient(i3, "test03");
+            AddInfoToClient(i4, "test04");
 
         }
 

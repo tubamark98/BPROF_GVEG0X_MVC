@@ -11,6 +11,7 @@ namespace Models
         [Key]
         public string InfoId { get; set; }
         public string Information { get; set; }
+        public string GymID { get; set; }
 
         [NotMapped]
         public virtual GymClient GymClient{get;set;}
