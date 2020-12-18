@@ -7,48 +7,51 @@ using System.Text;
 
 namespace Repos
 {
-    public class DetailRepository : IRepoBase<Models.WorkoutDetail>
+    public class DetailRepository
     {
-        GymContext context = new GymContext();
-        public void Add(WorkoutDetail item)
-        {
-            context.WorkoutDetails.Add(item);
-            Save();
-        }
 
-        public void Delete(WorkoutDetail item)
-        {
-            context.WorkoutDetails.Remove(item);
-            Save();
-        }
+    
+    //{
+    //    GymContext context = new GymContext();
+    //    public void Add(WorkoutDetail item)
+    //    {
+    //        context.WorkoutDetails.Add(item);
+    //        Save();
+    //    }
 
-        public void Delete(string id)
-        {
-            Delete(GetItem(id));
-        }
+    //    public void Delete(WorkoutDetail item)
+    //    {
+    //        context.WorkoutDetails.Remove(item);
+    //        Save();
+    //    }
 
-        public WorkoutDetail GetItem(string gymID)
-        {
-            return context.WorkoutDetails.FirstOrDefault(t => t.WorkoutId == gymID);
-        }
+    //    public void Delete(string id)
+    //    {
+    //        Delete(GetItem(id));
+    //    }
 
-        public IQueryable<WorkoutDetail> Read()
-        {
-            return context.WorkoutDetails.AsQueryable();
-        }
+    //    public WorkoutDetail GetItem(string gymID)
+    //    {
+    //        return context.WorkoutDetails.FirstOrDefault(t => t.WorkoutId == gymID);
+    //    }
 
-        public void Save()
-        {
-            context.SaveChanges();
-        }
+    //    public IQueryable<WorkoutDetail> Read()
+    //    {
+    //        return context.WorkoutDetails.AsQueryable();
+    //    }
 
-        public void Update(string gymID, WorkoutDetail newItem)
-        {
-            var oldItem = GetItem(gymID);
-            oldItem.ContestDiets = newItem.ContestDiets;
-            oldItem.WorkoutType = newItem.WorkoutType;
+    //    public void Save()
+    //    {
+    //        context.SaveChanges();
+    //    }
 
-            Save();
-        }
+    //    public void Update(string gymID, WorkoutDetail newItem)
+    //    {
+    //        var oldItem = GetItem(gymID);
+    //        oldItem.ContestDiets = newItem.ContestDiets;
+    //        oldItem.WorkoutType = newItem.WorkoutType;
+
+    //        Save();
+    //    }
     }
 }

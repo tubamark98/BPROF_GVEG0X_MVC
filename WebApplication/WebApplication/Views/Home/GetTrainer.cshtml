@@ -23,20 +23,7 @@
     {
         <h2>@item.ToString()</h2>
         <br />
-        @if (item.WorkoutDetail != null)
-        {
-            <h3>@item.WorkoutDetail.WorkoutType</h3>
-            <h3>@item.WorkoutDetail.ContestDiets</h3>
-            <br />
-            <a href="/Home/UpdateDetail?detailId=@item.WorkoutDetail.WorkoutId">Update WorkoutDetails</a>
-            <br />
-            <a href="/Home/DeleteDetail?detailId=@item.WorkoutDetail.WorkoutId">Tőrlés WorkoutDetails</a>
-        }
-        else
-        {
-            <h3> nincsen workoutdetail</h3>
-            <a href="/Home/CreateDetail?clientId=@item.GymID">Adjon hozza egy WorkoutDetails-t</a>
-        }
+
         <br />
         <a href="/Home/CreateInfo?clientId=@item.GymID">Adjon hozza egy ExtraInfo-t</a>
         @foreach (var extra in item.ExtraInfos)

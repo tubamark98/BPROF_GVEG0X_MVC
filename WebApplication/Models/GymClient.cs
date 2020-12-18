@@ -25,6 +25,8 @@ namespace Models
         public int BeenWorkingOutFor { get; set; }
         public bool Verified { get; set; }
         public string TrainerID { get; set; }
+        [NotMapped]
+        public virtual WorkoutDetail_v2 Detail_V2 { get; set; }
 
         public override string ToString()
         {

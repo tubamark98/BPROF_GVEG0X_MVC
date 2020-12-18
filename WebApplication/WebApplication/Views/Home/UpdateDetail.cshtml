@@ -1,7 +1,5 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@model Models.WorkoutDetail
+@{ Layout = null; }
 
 <!DOCTYPE html>
 
@@ -11,5 +9,28 @@
     <title>UpdateDetail</title>
 </head>
 <body>
+    <form action="/Home/UpdateDetail" method="post">
+        Edzés típusa:
+        <br />
+        <select name="WorkoutType">
+            <option value="calisthenics">calisthenics</option>
+            <option value="crossfit">crossfit</option>
+            <option value="weightlifting">weightlifting</option>
+            <option value="powerlifting">powerlifting</option>
+        </select>
+        <br />
+        Diétája:
+        <select name="ContestDiets">
+            <option value="carbCycling">carbCycling</option>
+            <option value="intermittentFasting">intermittentFasting</option>
+            <option value="lowCarb">lowCarb</option>
+        </select>
+
+        <input type="hidden" name="WorkoutId" value="@Model.WorkoutId" />
+        <input type="hidden" name="GymID" value="@Model.GymID" />
+        <input type="submit" name="update" />
+        <br />
+
+    </form>
 </body>
 </html>

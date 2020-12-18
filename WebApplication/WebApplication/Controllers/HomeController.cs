@@ -17,12 +17,11 @@ namespace WebApplication.Controllers
 
 
         public HomeController(TrainerLogic trainerLogic, ClientLogic clientLogic,
-            ExtraInfoLogic infoLogic, WorkoutDetailLogic detailLogic)
+            ExtraInfoLogic infoLogic)
         {
             this.trainerLogic = trainerLogic;
             this.clientLogic = clientLogic;
             this.infoLogic = infoLogic;
-            this.detailLogic = detailLogic;
         }
         
         public IActionResult Index()
@@ -60,9 +59,8 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateDetail(string clientId, WorkoutDetail workoutDetail)
+        public IActionResult CreateDetail(string clientId, WorkoutDetail_v2 workoutDetail)
         {
-            workoutDetail.WorkoutId = Guid.NewGuid().ToString();
             clientLogic.AddDetailToClient(workoutDetail, clientId);
             return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(clientId).TrainerID });
         }
@@ -128,16 +126,16 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult UpdateDetail(string detailId)
+        public IActionResult UpdateDetail(string clientId)
         {
-            return View(detailLogic.GetDetail(detailId));
+            return View(clientLogic.GetClient(clientId).Detail_V2);
         }
 
         [HttpPost]
-        public IActionResult UpdateDetail(WorkoutDetail newDetail)
+        public IActionResult UpdateDetail(WorkoutDetail_v2 newDetail)
         {
-            detailLogic.UpdateDetail(newDetail.WorkoutId, newDetail);
-            return RedirectToAction(nameof(GetTrainer), new { newDetail.GymClient.TrainerID });
+            clientLogic.UpdateDetail(newDetail);
+            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(newDetail.GymID).TrainerID });
         }
 
         [HttpGet]
@@ -199,7 +197,7 @@ namespace WebApplication.Controllers
             string clientId = detailToDelete.GymID;
             clientLogic.RemoveDetailFromClient(detailToDelete, clientId);
             detailLogic.DeleteDetail(detailId);
-            return RedirectToAction(nameof(GetTrainer), new { detailToDelete.GymClient.TrainerID });
+            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(clientId).TrainerID });
         }
 
         public IActionResult DeleteInfo(string infoId)

@@ -10,17 +10,16 @@ namespace Logic
     public class ClientLogic
     {
         IRepoBase<GymClient> clientRepo;
-        IRepoBase<WorkoutDetail> detailRepo;
+        //IRepoBase<WorkoutDetail> detailRepo;
         IRepoBase<ExtraInfo> infoRepo;
 
         public ClientLogic(IRepoBase<GymClient> clientRepo)
         {
             this.clientRepo = clientRepo;
         }
-        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<WorkoutDetail> detailRepo, IRepoBase<ExtraInfo> infoRepo)
+        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<ExtraInfo> infoRepo)
         {
             this.clientRepo = clientRepo;
-            this.detailRepo = detailRepo;
             this.infoRepo = infoRepo;
         }
 
@@ -53,26 +52,12 @@ namespace Logic
         #endregion
 
         #region Non-CRUD methods
-        public void AddDetailToClient(WorkoutDetail workoutDetail, string clientId)
-        {
-            GetClient(clientId).WorkoutDetail = new WorkoutDetail();
-            GetClient(clientId).WorkoutDetail = workoutDetail;
-            GetClient(clientId).WorkoutDetail.GymID = clientId;
-
-            clientRepo.Save();
-        }
 
         public void AddInfoToClient(ExtraInfo extraInfo, string clientId)
         {
             extraInfo.GymID = clientId;
             GetClient(clientId).ExtraInfos.Add(extraInfo);
 
-            clientRepo.Save();
-        }
-
-        public void RemoveDetailFromClient(WorkoutDetail workoutDetail, string clientId )
-        {
-            GetClient(clientId).WorkoutDetail.GymID = null;
             clientRepo.Save();
         }
 
@@ -99,49 +84,96 @@ namespace Logic
         public void valamiidkyet(GymClient client)
         {
 
-            var query = from x in detailRepo.Read()
-                        join y in infoRepo.Read() on x.GymClient equals y.GymClient
-                        group x by x.GymClient.FullName into g
-                        select g.Key;
-
-
+            //var query = from x in detailRepo.Read()
+            //            join y in infoRepo.Read() on x.GymClient equals y.GymClient
+            //            group x by x.GymClient.FullName into g
+            //            select g.Key;
         }
 
         public void FillDbWithSamples()
         {
-            WorkoutDetail d1 = new WorkoutDetail()
-            {
-                WorkoutId = "detail00",
-                ContestDiets = ContestDiets.lowCarb,
-                WorkoutType = WorkoutTypes.calisthenics
-            };
-            WorkoutDetail d2 = new WorkoutDetail()
-            {
-                WorkoutId = "detail01",
-                ContestDiets = ContestDiets.intermittentFasting,
-                WorkoutType = WorkoutTypes.powerlifting
-            };
-            WorkoutDetail d3 = new WorkoutDetail()
-            {
-                WorkoutId = "detail02",
-                ContestDiets = ContestDiets.carbCycling,
-                WorkoutType = WorkoutTypes.calisthenics
-            };
+            //WorkoutDetail_v2 d1 = new WorkoutDetail_v2()
+            //{
+            //    ContestDiets = ContestDiets.lowCarb,
+            //    WorkoutType = WorkoutTypes.calisthenics,
+            //    GymID = null
+            //};
+            //WorkoutDetail_v2 d2 = new WorkoutDetail_v2()
+            //{
+            //    ContestDiets = ContestDiets.intermittentFasting,
+            //    WorkoutType = WorkoutTypes.powerlifting,
+            //    GymID = null
+            //};
+            //WorkoutDetail_v2 d3 = new WorkoutDetail_v2()
+            //{
+            //    ContestDiets = ContestDiets.carbCycling,
+            //    WorkoutType = WorkoutTypes.calisthenics,
+            //    GymID = null
+            //};
 
             ExtraInfo i1 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret lábazni" };
             ExtraInfo i2 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "váll problémái vannak" };
             ExtraInfo i3 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret élni" };
             ExtraInfo i4 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Depressziós" };
 
-            AddDetailToClient(d1,"test01");
-            AddDetailToClient(d2,"test02");
-            AddDetailToClient(d3,"test03");
+            //AddDetailToClient(d1,"test01");
+            //AddDetailToClient(d2,"test02");
+            //AddDetailToClient(d3,"test03");
 
             AddInfoToClient(i1, "test01");
             AddInfoToClient(i2, "test02");
             AddInfoToClient(i3, "test03");
             AddInfoToClient(i4, "test04");
 
+        }
+
+
+
+        //depracated methods
+
+        public void UpdateDetail(WorkoutDetail_v2 newDetail)
+        {
+            GetClient(newDetail.GymID).Detail_V2 = newDetail;
+            clientRepo.Save();
+        }
+
+        public void AddDetailToClient(WorkoutDetail_v2 d1, string v)
+        {
+            var newClient = GetClient(v);
+            d1.GymID = v;
+            newClient.Detail_V2 = d1;
+            UpdateClient(v, newClient);
+            ;
+            clientRepo.Save();
+        }
+        public void RemoveDetailFromClient(WorkoutDetail_v2 d1, string v)
+        {
+            d1 = new WorkoutDetail_v2();
+            GymClient neClient = GetClient(v);
+            neClient.Detail_V2 = d1;
+            clientRepo.Update(v, neClient);
+            var testing = GetClient(v).Detail_V2;
+
+            clientRepo.Save();
+        }
+        public void AddDetailToClient(WorkoutDetail workoutDetail, string clientId)
+        {
+            GetClient(clientId).WorkoutDetail = new WorkoutDetail();
+            GetClient(clientId).WorkoutDetail = workoutDetail;
+            GetClient(clientId).WorkoutDetail.GymID = clientId;
+
+            clientRepo.Save();
+        }
+
+        public void RemoveDetailFromClient(WorkoutDetail workoutDetail, string clientId)
+        {
+            workoutDetail = new WorkoutDetail();
+            GymClient neClient = GetClient(clientId);
+            neClient.WorkoutDetail = workoutDetail;
+            clientRepo.Update(clientId, neClient);
+            var testing = GetClient(clientId).WorkoutDetail;
+
+            clientRepo.Save();
         }
 
         #endregion
