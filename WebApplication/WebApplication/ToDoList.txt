@@ -1,2 +1,1 @@
-﻿add non crud methods
-non crud tests
+﻿non crud tests
