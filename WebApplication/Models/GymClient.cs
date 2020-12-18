@@ -9,7 +9,8 @@ namespace Models
     public enum Genders
     {
         Nő,
-        Férfi
+        Férfi,
+        Helikopter
     }
 
     public class GymClient

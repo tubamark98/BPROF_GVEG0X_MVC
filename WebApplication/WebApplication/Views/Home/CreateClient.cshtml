@@ -1,38 +1,44 @@
 ﻿@model string
 
 <h1>Új Kliens</h1>
-<br />
-<a href="/Home/GetTrainer?trainerId=@Model">Vissza az edzőnkhöz</a>
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+</nav>
 <br />
 <form action="/Home/CreateClient" method="post">
-    Név:
-    <br />
-    <input type="text" name="FullName" />
-    <br />
 
-    Kor:
-    <br />
-    <input type="number" name="Age" />
-    <br />
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="FullName" required>
+        <label for="floatingInput">Név</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="Age" required>
+        <label for="floatingInput">Kor</label>
+    </div>
 
     Nem:
-    <br />
-    <select name="type">
-        <option value="Nő">Nő</option>
+    <select class="form-select" name="Gender" required>
+        <option selected value="Nő">Nő</option>
         <option value="Férfi">Férfi</option>
+        <option value="Helikopter">Helikopter</option>
     </select>
+    <br />
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="BeenWorkingOutFor" required>
+        <label for="floatingInput">Mennyit edzett</label>
+    </div>
 
-    <br />
-    Mennyit edzett:
-    <br />
-    <input type="number" name="BeenWorkingOutFor" />
-    <br />
-
-    Versenyekre jár:
-    <br />
-    <input type="checkbox" name="Verified" />
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="Verified">
+        <label class="form-check-label">
+            Versenyekre jár
+        </label>
+    </div>
     <br />
 
+    <input class="form-control" type="text" value="TrainingID: @Model" disabled readonly>
     <input type="hidden" name="trainerId" value="@Model" />
     <input type="submit" name="Create" />
     <br />

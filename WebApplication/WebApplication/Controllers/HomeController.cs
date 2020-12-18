@@ -10,10 +10,10 @@ namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        ClientLogic clientLogic;
-        ExtraInfoLogic infoLogic;
-        TrainerLogic trainerLogic;
-        WorkoutDetailLogic detailLogic;
+        readonly ClientLogic clientLogic;
+        readonly ExtraInfoLogic infoLogic;
+        readonly TrainerLogic trainerLogic;
+        private readonly WorkoutDetailLogic detailLogic;
 
 
         public HomeController(TrainerLogic trainerLogic, ClientLogic clientLogic,
@@ -22,6 +22,7 @@ namespace WebApplication.Controllers
             this.trainerLogic = trainerLogic;
             this.clientLogic = clientLogic;
             this.infoLogic = infoLogic;
+            detailLogic = null; //eredetileg 4 táblám volt de a tőrlés nem működött és nem tudtam rájönni, minden más CRUD mukodott rajta ugyhogy visszatérek egyszer rá
         }
         
         public IActionResult Index()

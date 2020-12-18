@@ -9,14 +9,13 @@ namespace ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.WriteLine("Hello World!");
             TrainerRepository trainerRepo = new TrainerRepository();
             ClientRepository clientRepo = new ClientRepository();
 
-            TrainerLogic trainerLogic = new TrainerLogic(trainerRepo);
-            ClientLogic clientLogic = new ClientLogic(clientRepo);
+            TrainerLogic trainerLogic = new TrainerLogic(trainerRepo, clientRepo);
 
             trainerLogic.FillDbWithSamples();
 
@@ -28,7 +27,6 @@ namespace ConsoleApp
                     Console.WriteLine("Client: " + client.FullName);
                 }
             }
-
             Console.ReadLine();
         }
     }

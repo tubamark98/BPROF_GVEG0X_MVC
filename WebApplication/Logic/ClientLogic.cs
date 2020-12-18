@@ -9,18 +9,13 @@ namespace Logic
 {
     public class ClientLogic
     {
-        IRepoBase<GymClient> clientRepo;
+        readonly IRepoBase<GymClient> clientRepo;
         //IRepoBase<WorkoutDetail> detailRepo;
-        IRepoBase<ExtraInfo> infoRepo;
+        //IRepoBase<ExtraInfo> infoRepo;
 
         public ClientLogic(IRepoBase<GymClient> clientRepo)
         {
             this.clientRepo = clientRepo;
-        }
-        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<ExtraInfo> infoRepo)
-        {
-            this.clientRepo = clientRepo;
-            this.infoRepo = infoRepo;
         }
 
         #region CRUD methods
@@ -81,7 +76,7 @@ namespace Logic
             return helper / query.Count();
         }
 
-        public void valamiidkyet(GymClient client)
+        public void Valamiidkyet()
         {
 
             //var query = from x in detailRepo.Read()
@@ -111,19 +106,43 @@ namespace Logic
             //    GymID = null
             //};
 
+            ExtraInfo i0 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Hardcore wowos" };
             ExtraInfo i1 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret lábazni" };
-            ExtraInfo i2 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "váll problémái vannak" };
+            ExtraInfo i2 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Váll problémái vannak" };
             ExtraInfo i3 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret élni" };
             ExtraInfo i4 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Depressziós" };
+            ExtraInfo i5 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 9szer eddz" };
+            ExtraInfo i6 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 3szer eddz" };
+            ExtraInfo i7 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 2szer eddz" };
+            ExtraInfo i8 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 8szer eddz" };
+            ExtraInfo i9 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 6szer eddz" };
+            ExtraInfo i10 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 16szer eddz" };
+            ExtraInfo i11 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Egyáltalán ezt valaki elolvassa?" };
+            ExtraInfo i12 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Can we hit 9000 likes on dis vidio gujz" };
+            ExtraInfo i13 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Megcsalta a feleségét" };
+            ExtraInfo i14 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alkoholista" };
+            ExtraInfo i15 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Csukló problémái vannak" };
 
             //AddDetailToClient(d1,"test01");
             //AddDetailToClient(d2,"test02");
             //AddDetailToClient(d3,"test03");
 
+            AddInfoToClient(i0, "test01");
             AddInfoToClient(i1, "test01");
             AddInfoToClient(i2, "test02");
             AddInfoToClient(i3, "test03");
             AddInfoToClient(i4, "test04");
+            AddInfoToClient(i5, "test05");
+            AddInfoToClient(i6, "test04");
+            AddInfoToClient(i7, "test03");
+            AddInfoToClient(i8, "test02");
+            AddInfoToClient(i9, "test01");
+            AddInfoToClient(i10, "test06");
+            AddInfoToClient(i11, "test07");
+            AddInfoToClient(i12, "test08");
+            AddInfoToClient(i13, "test09");
+            AddInfoToClient(i14, "test10");
+            AddInfoToClient(i15, "test07");
 
         }
 
@@ -152,7 +171,6 @@ namespace Logic
             GymClient neClient = GetClient(v);
             neClient.Detail_V2 = d1;
             clientRepo.Update(v, neClient);
-            var testing = GetClient(v).Detail_V2;
 
             clientRepo.Save();
         }
@@ -171,7 +189,6 @@ namespace Logic
             GymClient neClient = GetClient(clientId);
             neClient.WorkoutDetail = workoutDetail;
             clientRepo.Update(clientId, neClient);
-            var testing = GetClient(clientId).WorkoutDetail;
 
             clientRepo.Save();
         }

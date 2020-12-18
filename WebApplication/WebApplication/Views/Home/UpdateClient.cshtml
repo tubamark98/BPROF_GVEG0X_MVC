@@ -1,33 +1,66 @@
 ﻿@model Models.GymClient
+<h1>@Model.FullName Kliens frissítése</h1>
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+</nav>
 
+<br />
 <form action="/Home/UpdateClient" method="post">
-    Név:
-    <br />
-    <input type="text" value="@Model.FullName" name="FullName" />
-    <br />
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="FullName" value="@Model.FullName" required>
+        <label for="floatingInput">Név</label>
+    </div>
 
-    Kor:
-    <br />
-    <input type="number" value="@Model.Age" name="Age" />
-    <br />
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="Age" value="@Model.Age" required>
+        <label for="floatingInput">Kor</label>
+    </div>
 
     Nem:
-    <br />
-    <select name="type" value="@Model.Gender">
-        <option value="Nő">Nő</option>
-        <option value="Férfi">Férfi</option>
+
+    <select class="form-select" name="Gender" required>
+        @if (Model.Gender == Models.Genders.Férfi)
+        {
+<option selected value="Férfi">Férfi</option>
+                <option value="Nő">Nő</option>
+                                <option value="Helikopter">Helikopter</option>
+ }
+                            else if (Model.Gender == Models.Genders.Nő)
+                            {
+                <option value="Férfi">Férfi</option>
+                                <option selected value="Nő">Nő</option>
+                                                <option value="Helikopter">Helikopter</option> }
+                                                            else
+                                                            {
+                                                <option value="Férfi">Férfi</option>
+                                                                <option value="Nő">Nő</option>
+                                                                                <option selected value="Helikopter">Helikopter</option>}
     </select>
+    <br />
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control" name="BeenWorkingOutFor" value="@Model.BeenWorkingOutFor" required>
+        <label for="floatingInput">Mennyit edzett</label>
+    </div>
+    @if (@Model.Verified)
+    {
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="@Model.Verified" name="Verified" checked>
+    <label class="form-check-label" for="flexCheckChecked">
+        Versenyekre jár
+    </label>
+</div> }
+else
+{
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="@Model.Verified" name="Verified">
+    <label class="form-check-label" for="flexCheckDefault">
+        Versenyekre jár
+    </label>
+</div>            }
 
-    <br />
-    Mennyit edzett:
-    <br />
-    <input type="number" value="@Model.BeenWorkingOutFor" name="BeenWorkingOutFor" />
-    <br />
-
-    Versenyekre jár:
-    <br />
-    <input type="checkbox" value="@Model.Verified" name="Verified" />
-    <br />
+    <input class="form-control" type="text" value="GymID: @Model.GymID" disabled readonly>
+    <input class="form-control" type="text" value="TrainingID: @Model.TrainerID" disabled readonly>
 
     <input type="hidden" value="@Model.GymID" name="gymid" />
     <input type="hidden" value="@Model.TrainerID" name="trainerId" />

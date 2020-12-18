@@ -2,20 +2,31 @@
     background-color: #adb5bd;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4{
     color: #0d6efd;
     text-align: center
 }
 
+.h4-GetTrainer {
+    color: #0d6efd;
+    text-align: left
+}
+.customGetTrainer {
+    color: #150578;
+    text-align: left;
+    margin-right: auto;
+}
 .functionbutton {
     text-decoration: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     color: black;
     background-color: #BCEDF6;
     padding: 4px;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
 }
 
 .index-page-cuccli {
@@ -35,13 +46,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: auto;
     width: 50%;
 }
-.list-group list-group-horizontal{
-    list-style-type:none;
-}
-
-.deletebutton {
-}
-
-.updatebutton{
-
+.list-group list-group-horizontal {
+    list-style-type: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }

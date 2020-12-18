@@ -1,8 +1,9 @@
 ﻿@model Models.Trainer
 
+
 <nav class="nav justify-content-center">
     <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
-    <a class="btn btn-outline-success" href="/Home/ListTrainer">>Vissza az edzőkhöz</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
     <a class="btn btn-outline-dark" href="/Home/CreateClient?trainerId=@Model.TrainerID">Adjon hozzá az edzőhöz egy új Klienst</a>
 </nav>
 
@@ -11,19 +12,42 @@
 <br />
 @foreach (var item in Model.GymClients)
 {
-    <h4>@item.ToString()</h4>
+<br />
+    <h4 class="h4-GetTrainer">
+        Név: @item.FullName
+    </h4>
 
+    <nav class="nav justify-content-left">
+        <a class="list-group-item list-group-item-warning" href="/Home/UpdateClient?clientId=@item.GymID">@item.FullName frissítése</a>
+        <a class="list-group-item list-group-item-danger" href="/Home/DeleteClient?clientId=@item.GymID">@item.FullName tőrlése</a>
+        <a class="list-group-item list-group-item-info" href="/Home/CreateInfo?clientId=@item.GymID">Adjon meg új ExtraInfo-t</a>
+    </nav>
+
+    <p class="customGetTrainer">
+        Életkora: @item.Age
+    </p>
+    <p class="customGetTrainer">
+        Nem: @item.Gender
+    </p>
+    <p class="customGetTrainer">
+        Mennyi ideig Edzett: @item.BeenWorkingOutFor
+    </p>
+        @if(item.Verified)
+        {
+            <p class="customGetTrainer">Versenyez: Igen</p>
+        }
+        else
+        {
+            <p class="customGetTrainer">Versenyez: Nem</p>
+        }
+    <p>Extra infók:</p>
     @foreach (var extra in item.ExtraInfos)
     {
-        <h6>@extra.Information</h6>
-        <br />
-        <a class="btn btn-outline-danger" href="/Home/DeleteInfo?infoId=@extra.InfoId"> Torolje az ExtraInfo-t</a>
-        <a class="btn btn-outline-success" href="/Home/UpdateInfo?infoId=@extra.InfoId"> Updatelje az ExtraInfo-t</a>
-
+        <p>
+            @extra.Information
+                <a class="btn btn-outline-danger" href="/Home/DeleteInfo?infoId=@extra.InfoId"> ExtraInfo tőrlése</a>
+                <a class="btn btn-outline-success" href="/Home/UpdateInfo?infoId=@extra.InfoId"> ExtraInfo változtatása</a>
+        </p>
     }
-    <br />
-    <a class="functionbutton" href="/Home/CreateInfo?clientId=@item.GymID">Adjon hozza egy ExtraInfo-t</a>
-    <br />
-    <a class="btn btn-outline-success" href="/Home/UpdateClient?clientId=@item.GymID">UpdateClient</a>
-    <a class="btn btn-outline-danger" href="/Home/DeleteClient?clientId=@item.GymID">TőrlésClient</a>
+
 }

@@ -128,7 +128,7 @@ namespace Logic.Test
         [Test]
         public void TrainerAddMethod()
         {
-            TrainerLogic trainerLogic = new TrainerLogic(trainerRepository.Object, clientRepository.Object, detailRepository.Object, infoRepository.Object);
+            TrainerLogic trainerLogic = new TrainerLogic(trainerRepository.Object, clientRepository.Object);
 
             Trainer trainer = new Trainer { TrainerID = "sasfalkon", TrainerName = "Ron melléfoly" };
             trainerLogic.AddTrainer(trainer);

@@ -4,7 +4,7 @@
 <form action="/Home/CreateDetail" method="post">
     Edzés típusa
     <br />
-    <select name="WorkoutType">
+    <select name="WorkoutType" required>
         <option value="calisthenics">calisthenics</option>
         <option value="crossfit">crossfit</option>
         <option value="powerlifting">powerlifting</option>
@@ -15,7 +15,7 @@
     <br />
 
     Diétája:
-    <select name="ContestDiets">
+    <select name="ContestDiets" required>
         <option value="carbCycling">carbCycling</option>
         <option value="intermittentFasting">intermittentFasting</option>
         <option value="lowCarb">lowCarb</option>

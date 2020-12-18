@@ -1,11 +1,18 @@
-﻿@Model string
+﻿@model string
 
+<h1>Új ExtraInfo létrehozása</h1>
+
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+</nav>
 <form action="/Home/CreateInfo" method="post">
     Információ:
     <br />
-    <input type="text" name="Information" />
+    <input class="form-control" type="text" required name="Information" />
     <br />
 
+    <input class="form-control" type="text" value="ClientID: @Model" disabled readonly>
     <input type="hidden" name="clientId" value="@Model" />
     <input type="submit" name="Create" />
     <br />

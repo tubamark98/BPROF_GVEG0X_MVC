@@ -1,11 +1,18 @@
 ﻿@model Models.ExtraInfo
 
+<nav class="nav justify-content-center">
+    <a class="btn btn-outline-primary" href="/Home/Index">Vissza a főoldalra</a>
+    <a class="btn btn-outline-success" href="/Home/ListTrainer">Vissza az edzőkhöz</a>
+</nav>
+
 <form action="/Home/UpdateInfo" method="post">
     Információ:
     <br />
-    <input type="text" name="Information" value="@Model.Information" />
+    <input class="form-control" type="text" name="Information" value="@Model.Information" />
     <br />
 
+    <input class="form-control" type="text" value="InfoID: @Model.InfoId" disabled readonly>
+    <input class="form-control" type="text" value="ClientID: @Model.GymID" disabled readonly>
     <input type="hidden" name="infoId" value="@Model.InfoId" />
     <input type="hidden" name="GymID" value="@Model.GymID" />
 
