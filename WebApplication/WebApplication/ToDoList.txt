@@ -1,4 +1,4 @@
 ﻿adding css stuff
 add non crud methods
 non crud tests
-detailLogic and infoLogic dont store stuff properly
+Extrainfo delete in the case of trainers doesnt work

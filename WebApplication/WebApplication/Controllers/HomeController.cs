@@ -215,6 +215,10 @@ namespace WebApplication.Controllers
             for (int i = 0; i < clientsToDelete.Length; i++)
             {
                 trainerLogic.RemoveClientFromTrainer(clientsToDelete[i], trainerId);
+                foreach(var item in clientsToDelete[i].ExtraInfos)
+                {
+                    clientLogic.RemoveInfoFromClient(item,clientsToDelete[i].GymID);
+                }
                 clientLogic.DeleteClient(clientsToDelete[i].GymID);
             }
 
