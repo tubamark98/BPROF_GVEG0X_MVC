@@ -1,1 +1,2 @@
-﻿non crud tests
+﻿Ha ezt épp olvasod akkor annyit mondanék h 4 táblára szerettem volna megcsinálni de kifutottam az időből ezért 3 táblás kis fura cuccli lett
+non crud tests shouldnt have left this for the last I'm too tired

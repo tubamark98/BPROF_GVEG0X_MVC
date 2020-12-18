@@ -99,6 +99,7 @@ namespace Logic.Test
             clients.Add(g4);
             clients.Add(g5);
 
+            
             details.Add(d1);
             details.Add(d2);
             details.Add(d3);
@@ -111,6 +112,7 @@ namespace Logic.Test
             trainers.Add(t1);
             trainers.Add(t2);
             trainers.Add(t3);
+
 
             clientRepository.Setup(x => x.Read()).Returns(clients.AsQueryable());
             detailRepository.Setup(x => x.Read()).Returns(details.AsQueryable());
@@ -198,10 +200,25 @@ namespace Logic.Test
         #endregion
 
         #region 3 Non-Crud methods
+        /* nem nagyon tudtam rájönni lazyloadinggal ezt hogy kellett volna megoldani
+        [Test]
+        public void TestInfoWithLongestName()
+        {
+            ClientLogic clientLogic = new ClientLogic(clientRepository.Object);
+            var something = infoRepository.Object.Read().ToList();
+            foreach(var item in something)
+            {
+                clientLogic.AddInfoToClient(item, "test01");
+            }
+            
+            string expectedValue = "váll problémái vannak";
+            string proposedValue = clientLogic.LongestInfo();
 
+            Assert.That(expectedValue, Is.EqualTo(proposedValue));
 
-
-
+            clientRepository.Verify(x => x.Read(), Times.Once);
+        }
+        */
 
 
         #endregion
