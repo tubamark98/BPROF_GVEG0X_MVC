@@ -23,7 +23,7 @@ namespace ApiConsumer
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.GetTrainerNames();
         }
 
@@ -42,8 +42,8 @@ namespace ApiConsumer
         {
             GymClient newClient = new GymClient()
             {
-                FullName = tb_name.Text,
                 GymID = tb_clientID.Text,
+                FullName = tb_name.Text,
                 Age = int.Parse(tb_age.Text),
                 Gender = Genders.Nő,
                 BeenWorkingOutFor = 0,
@@ -52,7 +52,7 @@ namespace ApiConsumer
             };
 
             RestService restservice = new RestService("https://localhost:5001/", "/Client");
-            restservice.Post<GymClient>(newClient);
+            restservice.Post(newClient);
             this.GetTrainerNames();
         }
     }
