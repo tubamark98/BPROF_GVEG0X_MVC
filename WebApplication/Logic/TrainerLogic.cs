@@ -155,6 +155,7 @@ namespace Logic
         public void RemoveClientFromTrainer(GymClient gymClient, string trainerId)
         {
             GetTrainer(trainerId).GymClients.Remove(gymClient);
+            clientRepo.Delete(gymClient.GymID);
             trainerRepo.Save();
         }
 

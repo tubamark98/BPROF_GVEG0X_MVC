@@ -11,11 +11,12 @@ namespace Logic
     {
         readonly IRepoBase<GymClient> clientRepo;
         //IRepoBase<WorkoutDetail> detailRepo;
-        //IRepoBase<ExtraInfo> infoRepo;
+        IRepoBase<ExtraInfo> infoRepo;
 
-        public ClientLogic(IRepoBase<GymClient> clientRepo)
+        public ClientLogic(IRepoBase<GymClient> clientRepo, IRepoBase<ExtraInfo> infoRepo)
         {
             this.clientRepo = clientRepo;
+            this.infoRepo = infoRepo;
         }
 
         #region CRUD methods
@@ -97,6 +98,7 @@ namespace Logic
         public void RemoveInfoFromClient(ExtraInfo extraInfo, string clientId)
         {
             GetClient(clientId).ExtraInfos.Remove(extraInfo);
+            infoRepo.Delete(extraInfo.InfoId);
             clientRepo.Save();
         }
 

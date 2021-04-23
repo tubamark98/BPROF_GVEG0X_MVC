@@ -21,16 +21,19 @@ namespace ApiConsumer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int localhostIP;
+
         public MainWindow()
         {
             this.InitializeComponent();
             this.GetTrainerNames();
+            this.localhostIP = 7766;
         }
 
         public async Task GetTrainerNames()
         {
             cbox.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:5001/", "/Trainer");
+            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer");
             IEnumerable<Trainer> playlistnames =
                 await restservice.Get<Trainer>();
 
@@ -51,7 +54,7 @@ namespace ApiConsumer
                 TrainerID = (cbox.SelectedItem as Trainer).TrainerID
             };
 
-            RestService restservice = new RestService("https://localhost:5001/", "/Client");
+            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer");
             restservice.Post(newClient);
             this.GetTrainerNames();
         }

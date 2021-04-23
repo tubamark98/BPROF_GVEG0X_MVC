@@ -168,7 +168,7 @@ namespace WebApplication.Controllers
             var clientToDelete = clientLogic.GetClient(clientId);
             string trainerId = clientToDelete.TrainerID;
             trainerLogic.RemoveClientFromTrainer(clientToDelete, trainerId);
-            clientLogic.DeleteClient(clientId);
+            //clientLogic.DeleteClient(clientId);
             return RedirectToAction(nameof(GetTrainer), new { trainerId} );
         }
 
@@ -177,7 +177,7 @@ namespace WebApplication.Controllers
             var infoToDelete = infoLogic.GetInfo(infoId);
             string clientId = infoToDelete.GymClient.GymID;
             clientLogic.RemoveInfoFromClient(infoToDelete, clientId);
-            infoLogic.DeleteInfo(infoId);
+            //infoLogic.DeleteInfo(infoId);
             return RedirectToAction(nameof(GetTrainer), new { infoToDelete.GymClient.TrainerID });
         }
 
