@@ -40,22 +40,10 @@ namespace Data
             {
                 entity.HasOne(infos => infos.GymClient).WithMany(client => client.ExtraInfos).HasForeignKey(infos => infos.GymID);
             });
-
-            //Need to clean these up 1 day
-            modelBuilder.Entity<WorkoutDetail_v2>(entity =>
-            {
-                entity.HasNoKey();
-            });
-            //modelBuilder.Entity<WorkoutDetail>(entity =>
-            //{
-            //    entity.HasOne(client => client.GymClient).WithOne( work => work.WorkoutDetail).HasForeignKey<GymClient>(x => x.GymID);
-            //});
         }
        
         public DbSet<GymClient> GymClients { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<ExtraInfo> ExtraInfos { get; set; }
-        //public DbSet<WorkoutDetail> WorkoutDetails { get; set; }
-
     }
 }

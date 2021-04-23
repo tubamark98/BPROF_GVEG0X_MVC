@@ -174,52 +174,6 @@ namespace Logic
             AddInfoToClient(i17, "test05");
             AddInfoToClient(i18, "test10");
         }
-
-        //depracated methods
-
-        public void UpdateDetail(WorkoutDetail_v2 newDetail)
-        {
-            GetClient(newDetail.GymID).Detail_V2 = newDetail;
-            clientRepo.Save();
-        }
-
-        public void AddDetailToClient(WorkoutDetail_v2 d1, string v)
-        {
-            var newClient = GetClient(v);
-            d1.GymID = v;
-            newClient.Detail_V2 = d1;
-            UpdateClient(v, newClient);
-            ;
-            clientRepo.Save();
-        }
-        public void RemoveDetailFromClient(WorkoutDetail_v2 d1, string v)
-        {
-            d1 = new WorkoutDetail_v2();
-            GymClient neClient = GetClient(v);
-            neClient.Detail_V2 = d1;
-            clientRepo.Update(v, neClient);
-
-            clientRepo.Save();
-        }
-        public void AddDetailToClient(WorkoutDetail workoutDetail, string clientId)
-        {
-            GetClient(clientId).WorkoutDetail = new WorkoutDetail();
-            GetClient(clientId).WorkoutDetail = workoutDetail;
-            GetClient(clientId).WorkoutDetail.GymID = clientId;
-
-            clientRepo.Save();
-        }
-
-        public void RemoveDetailFromClient(WorkoutDetail workoutDetail, string clientId)
-        {
-            workoutDetail = new WorkoutDetail();
-            GymClient neClient = GetClient(clientId);
-            neClient.WorkoutDetail = workoutDetail;
-            clientRepo.Update(clientId, neClient);
-
-            clientRepo.Save();
-        }
-
         #endregion
 
     }

@@ -35,12 +35,5 @@ namespace Models
         [NotMapped]
         public virtual Trainer Trainer { get; set; }
         public virtual ICollection<ExtraInfo> ExtraInfos { get; set; }
-
-
-
-        //both deprecated
-        public virtual WorkoutDetail WorkoutDetail { get; set; }
-        [NotMapped]
-        public virtual WorkoutDetail_v2 Detail_V2 { get; set; }
     }
 }

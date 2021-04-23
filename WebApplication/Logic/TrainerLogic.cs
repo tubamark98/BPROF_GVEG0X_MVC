@@ -11,7 +11,6 @@ namespace Logic
     {
         readonly IRepoBase<Trainer> trainerRepo;
         readonly IRepoBase<GymClient> clientRepo;
-        //IRepoBase<WorkoutDetail> detailRepo;
 
         public TrainerLogic(IRepoBase<Trainer> trainerRepo, IRepoBase<GymClient> clientRepo)
         {

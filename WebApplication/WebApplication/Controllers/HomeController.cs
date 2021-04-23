@@ -13,8 +13,6 @@ namespace WebApplication.Controllers
         readonly ClientLogic clientLogic;
         readonly ExtraInfoLogic infoLogic;
         readonly TrainerLogic trainerLogic;
-        private readonly WorkoutDetailLogic detailLogic;
-
 
         public HomeController(TrainerLogic trainerLogic, ClientLogic clientLogic,
             ExtraInfoLogic infoLogic)
@@ -22,7 +20,6 @@ namespace WebApplication.Controllers
             this.trainerLogic = trainerLogic;
             this.clientLogic = clientLogic;
             this.infoLogic = infoLogic;
-            detailLogic = null; //eredetileg 4 táblám volt de a tőrlés nem működött és nem tudtam rájönni, minden más CRUD mukodott rajta ugyhogy visszatérek egyszer rá
         }
         
         public IActionResult Index()
@@ -67,19 +64,6 @@ namespace WebApplication.Controllers
             gymClient.TrainerID = trainerId;
             trainerLogic.AddClientToTrainer(gymClient, trainerId);
             return RedirectToAction(nameof(GetTrainer), new { trainerId });
-        }
-
-        [HttpGet]
-        public IActionResult CreateDetail(string clientId)
-        {
-            return View(nameof(CreateDetail), clientId);
-        }
-
-        [HttpPost]
-        public IActionResult CreateDetail(string clientId, WorkoutDetail_v2 workoutDetail)
-        {
-            clientLogic.AddDetailToClient(workoutDetail, clientId);
-            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(clientId).TrainerID });
         }
 
         [HttpGet]
@@ -143,19 +127,6 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult UpdateDetail(string clientId)
-        {
-            return View(clientLogic.GetClient(clientId).Detail_V2);
-        }
-
-        [HttpPost]
-        public IActionResult UpdateDetail(WorkoutDetail_v2 newDetail)
-        {
-            clientLogic.UpdateDetail(newDetail);
-            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(newDetail.GymID).TrainerID });
-        }
-
-        [HttpGet]
         public IActionResult UpdateInfo(string infoId)
         {
             return View(infoLogic.GetInfo(infoId));
@@ -194,27 +165,11 @@ namespace WebApplication.Controllers
                 infoLogic.DeleteInfo(infoToDelete[i].InfoId);
             }
 
-            WorkoutDetail detailToDelet = clientLogic.GetClient(clientId).WorkoutDetail;
-            if(detailToDelet != null)
-            {
-                clientLogic.RemoveDetailFromClient(detailToDelet, clientId);
-                detailLogic.DeleteDetail(detailToDelet.WorkoutId);
-            }
-
             var clientToDelete = clientLogic.GetClient(clientId);
             string trainerId = clientToDelete.TrainerID;
             trainerLogic.RemoveClientFromTrainer(clientToDelete, trainerId);
             clientLogic.DeleteClient(clientId);
             return RedirectToAction(nameof(GetTrainer), new { trainerId} );
-        }
-
-        public IActionResult DeleteDetail(string detailId)
-        {
-            var detailToDelete = detailLogic.GetDetail(detailId);
-            string clientId = detailToDelete.GymID;
-            clientLogic.RemoveDetailFromClient(detailToDelete, clientId);
-            detailLogic.DeleteDetail(detailId);
-            return RedirectToAction(nameof(GetTrainer), new { clientLogic.GetClient(clientId).TrainerID });
         }
 
         public IActionResult DeleteInfo(string infoId)
