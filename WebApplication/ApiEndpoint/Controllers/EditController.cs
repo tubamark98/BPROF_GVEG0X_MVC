@@ -15,19 +15,25 @@ namespace ApiEndpoint.Controllers
         ClientLogic clientLogic;
         TrainerLogic trainerLogic;
         ExtraInfoLogic infoLogic;
+        bool fillDBControl;
 
         public EditController(ClientLogic clientLogic, TrainerLogic trainerLogic, ExtraInfoLogic infoLogic)
         {
             this.clientLogic = clientLogic;
             this.trainerLogic = trainerLogic;
             this.infoLogic = infoLogic;
+            fillDBControl = false;
         }
 
         [HttpGet]
         public void FillDb()
         {
-            trainerLogic.FillDbWithSamples();
-            clientLogic.FillDbWithSamples();
+            if(!fillDBControl)
+            {
+                trainerLogic.FillDbWithSamples();
+                clientLogic.FillDbWithSamples();
+                fillDBControl = true;
+            }
         }
 
         [HttpPost]
