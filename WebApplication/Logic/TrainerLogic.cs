@@ -160,13 +160,12 @@ namespace Logic
 
         public void FillDbWithSamples()
         {
-            Trainer t1 = new Trainer() { TrainerName = "Edvás Erezacsi", TrainerID = Guid.NewGuid().ToString()};
-            Trainer t2 = new Trainer() { TrainerName = "Zacsi Maszíro", TrainerID = Guid.NewGuid().ToString() };
-            Trainer t3 = new Trainer() { TrainerName = "Medvés Hasnyálmokus", TrainerID = Guid.NewGuid().ToString() };
+            Trainer t1 = new Trainer() { TrainerName = "Edvás Erezacsi" };
+            Trainer t2 = new Trainer() { TrainerName = "Zacsi Maszíro" };
+            Trainer t3 = new Trainer() { TrainerName = "Medvés Hasnyálmokus" };
 
             GymClient g0 = new GymClient()
             {
-                GymID = Guid.NewGuid().ToString(),
                 Gender = Genders.Nő,
                 FullName = "Macskás Réka",
                 TrainerID = "asd647",
@@ -176,7 +175,6 @@ namespace Logic
             };
             GymClient g1 = new GymClient()
             {
-                GymID = Guid.NewGuid().ToString(),
                 Gender = Genders.Nő,
                 FullName = "Negnyes Reheracskó",
                 TrainerID = "asd647",
@@ -186,7 +184,6 @@ namespace Logic
             };
             GymClient g2 = new GymClient()
             {
-                GymID = "test01",
                 Gender = Genders.Férfi,
                 FullName = "Komodoros Zacsinyalogato",
                 TrainerID = "klo293",
@@ -196,7 +193,6 @@ namespace Logic
             };
             GymClient g3 = new GymClient()
             {
-                GymID = "test02",
                 Gender = Genders.Férfi,
                 FullName = "Arnold Zacsinegger",
                 TrainerID = "huge99",
@@ -206,7 +202,6 @@ namespace Logic
             };
             GymClient g4 = new GymClient()
             {
-                GymID = "test03",
                 Gender = Genders.Nő,
                 FullName = "Pesti veszettmacska",
                 TrainerID = "asd647",
@@ -216,7 +211,6 @@ namespace Logic
             };
             GymClient g5 = new GymClient()
             {
-                GymID = "test04",
                 Gender = Genders.Férfi,
                 FullName = "obudai kronikuskigyo",
                 TrainerID = "asd647",
@@ -226,7 +220,6 @@ namespace Logic
             };
             GymClient g6 = new GymClient()
             {
-                GymID = "test05",
                 Gender = Genders.Helikopter,
                 FullName = "Jay Duckler",
                 TrainerID = "asd647",
@@ -236,7 +229,6 @@ namespace Logic
             };
             GymClient g7 = new GymClient()
             {
-                GymID = "test06",
                 Gender = Genders.Férfi,
                 FullName = "Ronnie Coalman",
                 TrainerID = "asd647",
@@ -246,7 +238,6 @@ namespace Logic
             };
             GymClient g8 = new GymClient()
             {
-                GymID = "test07",
                 Gender = Genders.Férfi,
                 FullName = "Gizi mama",
                 TrainerID = "asd647",
@@ -256,7 +247,6 @@ namespace Logic
             };
             GymClient g9 = new GymClient()
             {
-                GymID = "test08",
                 Gender = Genders.Helikopter,
                 FullName = "Raid: Shadow Legends",
                 TrainerID = "asd647",
@@ -266,7 +256,6 @@ namespace Logic
             };
             GymClient g10 = new GymClient()
             {
-                GymID = "test09",
                 Gender = Genders.Helikopter,
                 FullName = "Felix shellbörg",
                 TrainerID = "asd647",
@@ -276,7 +265,6 @@ namespace Logic
             };
             GymClient g11 = new GymClient()
             {
-                GymID = "test10",
                 Gender = Genders.Helikopter,
                 FullName = "Fill Heath",
                 TrainerID = "asd647",

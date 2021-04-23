@@ -100,79 +100,49 @@ namespace Logic
             clientRepo.Save();
         }
 
-        public void Valamiidkyet()
-        {
-
-            //var query = from x in detailRepo.Read()
-            //            join y in infoRepo.Read() on x.GymClient equals y.GymClient
-            //            group x by x.GymClient.FullName into g
-            //            select g.Key;
-        }
-
         public void FillDbWithSamples()
         {
-            //WorkoutDetail_v2 d1 = new WorkoutDetail_v2()
-            //{
-            //    ContestDiets = ContestDiets.lowCarb,
-            //    WorkoutType = WorkoutTypes.calisthenics,
-            //    GymID = null
-            //};
-            //WorkoutDetail_v2 d2 = new WorkoutDetail_v2()
-            //{
-            //    ContestDiets = ContestDiets.intermittentFasting,
-            //    WorkoutType = WorkoutTypes.powerlifting,
-            //    GymID = null
-            //};
-            //WorkoutDetail_v2 d3 = new WorkoutDetail_v2()
-            //{
-            //    ContestDiets = ContestDiets.carbCycling,
-            //    WorkoutType = WorkoutTypes.calisthenics,
-            //    GymID = null
-            //};
+            ExtraInfo i0 = new ExtraInfo() { Information = "Hardcore wowos" };
+            ExtraInfo i1 = new ExtraInfo() { Information = "Nem szeret lábazni" };
+            ExtraInfo i2 = new ExtraInfo() { Information = "Váll problémái vannak" };
+            ExtraInfo i3 = new ExtraInfo() { Information = "Nem szeret élni" };
+            ExtraInfo i4 = new ExtraInfo() { Information = "Depressziós" };
+            ExtraInfo i5 = new ExtraInfo() { Information = "Heti 9szer eddz" };
+            ExtraInfo i6 = new ExtraInfo() { Information = "Heti 3szer eddz" };
+            ExtraInfo i7 = new ExtraInfo() { Information = "Heti 2szer eddz" };
+            ExtraInfo i8 = new ExtraInfo() { Information = "Heti 8szer eddz" };
+            ExtraInfo i9 = new ExtraInfo() { Information = "Heti 6szer eddz" };
+            ExtraInfo i10 = new ExtraInfo() { Information = "Heti 16szer eddz" };
+            ExtraInfo i11 = new ExtraInfo() { Information = "Egyáltalán ezt valaki elolvassa?" };
+            ExtraInfo i12 = new ExtraInfo() { Information = "Can we hit 9000 likes on dis vidio gujz" };
+            ExtraInfo i13 = new ExtraInfo() { Information = "Megcsalta a feleségét" };
+            ExtraInfo i14 = new ExtraInfo() { Information = "Alkoholista" };
+            ExtraInfo i15 = new ExtraInfo() { Information = "Csukló problémái vannak" };
+            ExtraInfo i16 = new ExtraInfo() { Information = "Alcoholist" };
+            ExtraInfo i17 = new ExtraInfo() { Information = "Alcoholic" };
+            ExtraInfo i18 = new ExtraInfo() { Information = "Ez az info csak azért lett létrehozva hogy bekerüljön a leghosszabb infohoz, Hello =)"};
 
-            ExtraInfo i0 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Hardcore wowos" };
-            ExtraInfo i1 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret lábazni" };
-            ExtraInfo i2 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Váll problémái vannak" };
-            ExtraInfo i3 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Nem szeret élni" };
-            ExtraInfo i4 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Depressziós" };
-            ExtraInfo i5 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 9szer eddz" };
-            ExtraInfo i6 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 3szer eddz" };
-            ExtraInfo i7 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 2szer eddz" };
-            ExtraInfo i8 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 8szer eddz" };
-            ExtraInfo i9 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 6szer eddz" };
-            ExtraInfo i10 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Heti 16szer eddz" };
-            ExtraInfo i11 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Egyáltalán ezt valaki elolvassa?" };
-            ExtraInfo i12 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Can we hit 9000 likes on dis vidio gujz" };
-            ExtraInfo i13 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Megcsalta a feleségét" };
-            ExtraInfo i14 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alkoholista" };
-            ExtraInfo i15 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Csukló problémái vannak" };
-            ExtraInfo i16 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alcoholist" };
-            ExtraInfo i17 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Alcoholic" };
-            ExtraInfo i18 = new ExtraInfo() { InfoId = Guid.NewGuid().ToString(), Information = "Ez az info csak azért lett létrehozva hogy bekerüljön a leghosszabb infohoz, Hello =)"};
+            IList<GymClient> collection = this.GetClients().ToList();
 
-            //AddDetailToClient(d1,"test01");
-            //AddDetailToClient(d2,"test02");
-            //AddDetailToClient(d3,"test03");
-
-            AddInfoToClient(i0, "test01");
-            AddInfoToClient(i1, "test01");
-            AddInfoToClient(i2, "test02");
-            AddInfoToClient(i3, "test03");
-            AddInfoToClient(i4, "test04");
-            AddInfoToClient(i5, "test05");
-            AddInfoToClient(i6, "test04");
-            AddInfoToClient(i7, "test03");
-            AddInfoToClient(i8, "test02");
-            AddInfoToClient(i9, "test01");
-            AddInfoToClient(i10, "test06");
-            AddInfoToClient(i11, "test07");
-            AddInfoToClient(i12, "test08");
-            AddInfoToClient(i13, "test09");
-            AddInfoToClient(i14, "test10");
-            AddInfoToClient(i15, "test07");
-            AddInfoToClient(i16, "test08");
-            AddInfoToClient(i17, "test05");
-            AddInfoToClient(i18, "test10");
+            AddInfoToClient(i0, collection[0].GymID);
+            AddInfoToClient(i1, collection[1].GymID);
+            AddInfoToClient(i2, collection[2].GymID);
+            AddInfoToClient(i3, collection[3].GymID);
+            AddInfoToClient(i4, collection[4].GymID);
+            AddInfoToClient(i5, collection[5].GymID);
+            AddInfoToClient(i6, collection[4].GymID);
+            AddInfoToClient(i7, collection[3].GymID);
+            AddInfoToClient(i8, collection[2].GymID);
+            AddInfoToClient(i9, collection[1].GymID);
+            AddInfoToClient(i10, collection[6].GymID);
+            AddInfoToClient(i11, collection[7].GymID);
+            AddInfoToClient(i12, collection[8].GymID);
+            AddInfoToClient(i13, collection[9].GymID);
+            AddInfoToClient(i14, collection[10].GymID);
+            AddInfoToClient(i15, collection[7].GymID);
+            AddInfoToClient(i16, collection[8].GymID);
+            AddInfoToClient(i17, collection[5].GymID);
+            AddInfoToClient(i18, collection[10].GymID);
         }
         #endregion
 

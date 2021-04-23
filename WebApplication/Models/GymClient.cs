@@ -16,6 +16,7 @@ namespace Models
     public class GymClient
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string GymID { get; set; }
         [StringLength(200)]
         public string FullName { get; set; }
