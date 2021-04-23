@@ -10,7 +10,7 @@ namespace ApiEndpoint.Controllers
 {
     [ApiController]
     [Route("{controller}")]
-    public class InfoController
+    public class InfoController : ControllerBase
     {
         ExtraInfoLogic logic;
         public InfoController(ExtraInfoLogic logic)

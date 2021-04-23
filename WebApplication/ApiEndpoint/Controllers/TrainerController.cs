@@ -10,7 +10,7 @@ namespace ApiEndpoint.Controllers
 {
     [ApiController]
     [Route("{controller}")]
-    public class TrainerController
+    public class TrainerController : ControllerBase
     {
         TrainerLogic logic;
 
