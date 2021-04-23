@@ -7,7 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="103,46,0,0" VerticalAlignment="Top" Width="448" Height="65"/>
-        <ListBox x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.Clients}" Margin="103,116,249,0" VerticalAlignment="Top" Width="448" Height="281"></ListBox>
+        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Width="482" Height="38">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding TrainerName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ListBox x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.GymClients}"  Margin="24,105,294,0" VerticalAlignment="Top" Height="253">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding FullName}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
