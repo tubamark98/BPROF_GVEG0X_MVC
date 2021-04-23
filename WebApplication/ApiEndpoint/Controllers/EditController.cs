@@ -1,5 +1,6 @@
 ﻿using Logic;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,30 @@ namespace ApiEndpoint.Controllers
         {
             trainerLogic.FillDbWithSamples();
             clientLogic.FillDbWithSamples();
+        }
+
+        [HttpPost]
+        public void AddClientToTrainer([FromBody] ClientAndTrainer item)
+        {
+            trainerLogic.AddClientToTrainer(clientLogic.GetClient(item.ClientId), item.TrainerId);
+        }
+
+        [HttpDelete]
+        public void RemoveClientFromTrainer([FromBody] ClientAndTrainer item)
+        {
+            trainerLogic.RemoveClientFromTrainer(clientLogic.GetClient(item.ClientId), item.TrainerId);
+        }
+
+        [HttpPost]
+        public void AddInfoToClient([FromBody] ClientAndInfo item)
+        {
+            clientLogic.AddInfoToClient(infoLogic.GetInfo(item.InfoId), item.ClientId);
+        }
+
+        [HttpDelete]
+        public void RemoveInfoFromClient([FromBody] ClientAndInfo item)
+        {
+            clientLogic.RemoveInfoFromClient(infoLogic.GetInfo(item.InfoId), item.ClientId);
         }
     }
 }
