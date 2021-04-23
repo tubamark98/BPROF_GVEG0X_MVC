@@ -7,19 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Width="482" Height="38">
+        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Width="746" Height="38">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding TrainerName}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ListBox x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.GymClients}"  Margin="24,105,294,0" VerticalAlignment="Top" Height="253">
+        <ListBox x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.GymClients}"  Margin="24,105,446,0" VerticalAlignment="Top" Height="253">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding FullName}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Margin="384,105,30,76">
+            <Label FontSize="20" Content="Name"></Label>
+            <TextBox x:Name="tb_name"/>
+            <Label FontSize="20" Content="ID"></Label>
+            <TextBox x:Name="tb_clientID"/>
+            <Label FontSize="20" Content="Age"></Label>
+            <TextBox x:Name="tb_age"/>
+            <Button Content="Add" FontSize="20" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

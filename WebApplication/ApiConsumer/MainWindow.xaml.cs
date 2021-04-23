@@ -24,7 +24,7 @@ namespace ApiConsumer
         public MainWindow()
         {
             InitializeComponent();
-            GetTrainerNames();
+            this.GetTrainerNames();
         }
 
         public async Task GetTrainerNames()
@@ -38,22 +38,22 @@ namespace ApiConsumer
             cbox.SelectedIndex = 0;
         }
 
-        /*
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GymClient newvideo = new GymClient()
+            GymClient newClient = new GymClient()
             {
                 FullName = tb_name.Text,
-                Title = tb_title.Text,
-                YoutubeId = tb_youtube.Text,
-                Rating = 5,
-                PlayListUid = (cbox.SelectedItem as Playlist).UID
+                GymID = tb_clientID.Text,
+                Age = int.Parse(tb_age.Text),
+                Gender = Genders.Nő,
+                BeenWorkingOutFor = 0,
+                Verified = false,
+                TrainerID = (cbox.SelectedItem as Trainer).TrainerID
             };
 
-            RestService restservice = new RestService("https://localhost:5001/", "/Video");
-            restservice.Post<GymClient>(newvideo);
-            GetTrainerNames();
+            RestService restservice = new RestService("https://localhost:5001/", "/Client");
+            restservice.Post<GymClient>(newClient);
+            this.GetTrainerNames();
         }
-        */
     }
 }
