@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
@@ -15,25 +16,19 @@ namespace ApiEndpoint.Controllers
         ClientLogic clientLogic;
         TrainerLogic trainerLogic;
         ExtraInfoLogic infoLogic;
-        bool fillDBControl;
 
         public EditController(ClientLogic clientLogic, TrainerLogic trainerLogic, ExtraInfoLogic infoLogic)
         {
             this.clientLogic = clientLogic;
             this.trainerLogic = trainerLogic;
             this.infoLogic = infoLogic;
-            fillDBControl = false;
         }
 
         [HttpGet]
         public void FillDb()
         {
-            if(!fillDBControl)
-            {
-                trainerLogic.FillDbWithSamples();
-                clientLogic.FillDbWithSamples();
-                fillDBControl = true;
-            }
+            trainerLogic.FillDbWithSamples();
+            clientLogic.FillDbWithSamples();
         }
 
         [HttpPost]
@@ -54,6 +49,7 @@ namespace ApiEndpoint.Controllers
             clientLogic.AddInfoToClient(infoLogic.GetInfo(item.InfoId), item.ClientId);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public void RemoveInfoFromClient([FromBody] ClientAndInfo item)
         {

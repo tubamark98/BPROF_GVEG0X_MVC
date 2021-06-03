@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,18 +23,41 @@ namespace ApiConsumer
     public partial class MainWindow : Window
     {
         private int localhostIP;
+        private string token;
 
         public MainWindow()
         {
             this.InitializeComponent();
-            this.GetTrainerNames();
-            this.localhostIP = 7766;
+            this.Login();
+        }
+
+        public async Task Login()
+        {
+            PasswordWindow pw = new PasswordWindow();
+            if (pw.ShowDialog() == true)
+            {
+                this.localhostIP = 7766;
+                RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Auth");
+                TokenViewModel tvm = restservice.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
+                {
+                    Username = pw.UserName,
+                    Password = pw.Password
+                }).Result;
+
+                token = tvm.Token;
+
+                this.GetTrainerNames();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         public async Task GetTrainerNames()
         {
             cbox.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer");
+            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer", token);
             IEnumerable<Trainer> playlistnames =
                 await restservice.Get<Trainer>();
 
@@ -54,7 +78,7 @@ namespace ApiConsumer
                 TrainerID = (cbox.SelectedItem as Trainer).TrainerID
             };
 
-            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer");
+            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer", token);
             restservice.Post(newClient);
             this.GetTrainerNames();
         }

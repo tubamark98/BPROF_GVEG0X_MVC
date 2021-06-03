@@ -114,5 +114,14 @@ namespace ApiConsumer
             response.EnsureSuccessStatusCode();
         }
 
+        public async Task<R> Put<R, T>( T item)
+        {
+            HttpResponseMessage response =
+                await client.PutAsJsonAsync(endpoint + "/", item);
+
+
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsAsync<R>();
+        }
     }
 }
