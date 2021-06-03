@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace ApiEndpoint.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("{controller}")]
     public class TrainerController : ControllerBase
     {

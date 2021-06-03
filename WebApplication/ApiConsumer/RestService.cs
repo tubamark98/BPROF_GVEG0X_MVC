@@ -114,7 +114,7 @@ namespace ApiConsumer
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task<R> Put<R, T>( T item)
+        public async Task<R> Put<R, T>(T item)
         {
             HttpResponseMessage response =
                 await client.PutAsJsonAsync(endpoint + "/", item);
@@ -123,5 +123,6 @@ namespace ApiConsumer
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsAsync<R>();
         }
+
     }
 }

@@ -22,7 +22,6 @@ namespace ApiConsumer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int localhostIP;
         private string token;
 
         public MainWindow()
@@ -36,17 +35,16 @@ namespace ApiConsumer
             PasswordWindow pw = new PasswordWindow();
             if (pw.ShowDialog() == true)
             {
-                this.localhostIP = 7766;
-                RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Auth");
-                TokenViewModel tvm = restservice.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
+                RestService restservice = new RestService("https://localhost:7766/", "/Auth");
+                TokenViewModel tvm = await restservice.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
                 {
                     Username = pw.UserName,
                     Password = pw.Password
-                }).Result;
+                });
 
                 token = tvm.Token;
 
-                this.GetTrainerNames();
+                await this.GetTrainerNames();
             }
             else
             {
@@ -57,11 +55,11 @@ namespace ApiConsumer
         public async Task GetTrainerNames()
         {
             cbox.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer", token);
-            IEnumerable<Trainer> playlistnames =
+            RestService restservice = new RestService("https://localhost:7766/", "/Trainer", token);
+            IEnumerable<Trainer> trainers =
                 await restservice.Get<Trainer>();
 
-            cbox.ItemsSource = playlistnames;
+            cbox.ItemsSource = trainers;
             cbox.SelectedIndex = 0;
         }
 
@@ -78,7 +76,7 @@ namespace ApiConsumer
                 TrainerID = (cbox.SelectedItem as Trainer).TrainerID
             };
 
-            RestService restservice = new RestService("https://localhost:" + localhostIP + "/", "/Trainer", token);
+            RestService restservice = new RestService("https://localhost:7766/", "/Client", token);
             restservice.Post(newClient);
             this.GetTrainerNames();
         }

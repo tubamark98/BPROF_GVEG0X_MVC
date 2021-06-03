@@ -69,6 +69,19 @@ namespace Data
             modelBuilder.Entity<IdentityUser>().HasData(adminUser);
             modelBuilder.Entity<IdentityUser>().HasData(clientUser);
 
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = "341743f0-asd2–42de-afbf-59kmkkmk72cf6",
+                UserId = "02174cf0–9412–4cfe-afbf-59f706d72cf6"
+            });
+
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = "341743f0-dee2–42de-bbbb-59kmkkmk72cf6",
+                UserId = "e2174cf0–9412–4cfe-afbf-59f706d72cf6"
+            });
+
+
             modelBuilder.Entity<GymClient>(entity =>
             {
                 entity.HasOne(client => client.Trainer).WithMany(trainer => trainer.GymClients).HasForeignKey(client => client.TrainerID);
