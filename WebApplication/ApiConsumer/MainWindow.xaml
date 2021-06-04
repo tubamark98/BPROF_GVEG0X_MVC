@@ -7,15 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Width="330" Height="38">
+        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Width="746" Height="38">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding TrainerName}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
-            
         </ComboBox>
-        <Button Content="Delete Selected Trainer" FontSize="20" Click="Delete_Trainer" Margin="384,49,30,353"/>
         <ListBox x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.GymClients}"  Margin="24,105,446,0" VerticalAlignment="Top" Height="253">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -31,9 +29,8 @@
             <Label FontSize="20" Content="Age"></Label>
             <TextBox x:Name="tb_age"/>
             <Button Content="Add Client" FontSize="20" Click="Button_Click"/>
-            <Button Content="Delete Selected Client" FontSize="20" Click="Delete_Client"/>
+            <Button Content="Delete Selected Trainer" FontSize="20" Click="Delete_Trainer"/>
             
-
         </StackPanel>
     </Grid>
 </Window>
