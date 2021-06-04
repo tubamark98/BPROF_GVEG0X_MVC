@@ -32,9 +32,10 @@ namespace ApiEndpoint.Controllers
         }
 
         [HttpPost]
-        public void AddClientToTrainer([FromBody] ClientAndTrainer item)
+        [Route("AddClientToTrainer/")]
+        public void AddClientToTrainer([FromBody] GymClient item)
         {
-            trainerLogic.AddClientToTrainer(clientLogic.GetClient(item.ClientId), item.TrainerId);
+            trainerLogic.AddClientToTrainer(clientLogic.GetClient(item.GymID), item.TrainerID);
         }
 
         [HttpDelete]

@@ -35,7 +35,7 @@ namespace ApiConsumer.UI
         private void OkClick(object sender, RoutedEventArgs eventArgs)
         {
             var ageHelper = int.Parse(this.AgeText.Text);
-            if(ageHelper <0 || ageHelper >90)
+            if(ageHelper <14 || ageHelper >90)
             {
                 viewModel.Age = 18;
             }
