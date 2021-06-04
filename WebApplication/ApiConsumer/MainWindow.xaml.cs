@@ -1,28 +1,21 @@
-﻿using Models;
+﻿using ApiConsumer.UI;
+using ApiConsumer.VM;
+using Models;
 using Models.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ApiConsumer
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml.
     /// </summary>
     public partial class MainWindow : Window
     {
         private string token;
+        private string url = "https://gymapideploy.azurewebsites.net/";
 
         public MainWindow()
         {
@@ -35,7 +28,7 @@ namespace ApiConsumer
             PasswordWindow pw = new PasswordWindow();
             if (pw.ShowDialog() == true)
             {
-                RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Auth");
+                RestService restservice = new RestService(url, "/Auth");
                 TokenViewModel tvm = await restservice.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
                 {
                     Username = pw.UserName,
@@ -55,7 +48,7 @@ namespace ApiConsumer
         public async Task GetTrainerNames()
         {
             cbox.ItemsSource = null;
-            RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Trainer", token);
+            RestService restservice = new RestService(url, "/Trainer", token);
             IEnumerable<Trainer> trainers =
                 await restservice.Get<Trainer>();
 
@@ -63,22 +56,125 @@ namespace ApiConsumer
             cbox.SelectedIndex = 0;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Delete_Trainer(object sender, RoutedEventArgs e)
         {
-            GymClient newClient = new GymClient()
-            {
-                GymID = tb_clientID.Text,
-                FullName = tb_name.Text,
-                Age = int.Parse(tb_age.Text),
-                Gender = Genders.Nő,
-                BeenWorkingOutFor = 0,
-                Verified = false,
-                TrainerID = (cbox.SelectedItem as Trainer).TrainerID
-            };
+            Trainer helper = cbox.SelectedItem as Trainer;
 
-            RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Client", token);
-            restservice.Post(newClient);
-            this.GetTrainerNames();
+            if (helper != null)
+            {
+                ;
+                foreach(var item in helper.GymClients)
+                {
+                    RestService helpService = new RestService(url, "/Client", token);
+                    helpService.Delete<string>(item.GymID);
+                }
+
+                RestService restService = new RestService(url, "/Trainer", token);
+                restService.Delete<string>(helper.TrainerID);
+                MessageBox.Show("The following trainer, " + helper.TrainerName + " has been deleted.");
+
+                await this.GetTrainerNames();
+            }
+            else
+            {
+                MessageBox.Show("No trainer selected.");
+            }
+        }
+
+        private async void Delete_Client(object sender, RoutedEventArgs e)
+        {
+            GymClient helper = lbox.SelectedItem as GymClient;
+
+            if (helper != null)
+            {
+                ;
+                RestService restService = new RestService(url, "/Client", token);
+                restService.Delete<string>(helper.GymID);
+                MessageBox.Show("The following client, " + helper.FullName + " has been deleted.");
+
+                await this.GetTrainerNames();
+            }
+            else
+            {
+                MessageBox.Show("No client selected.");
+            }
+        }
+
+        private async void Mod_Trainer(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void Mod_Client(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void Add_Trainer(object sender, RoutedEventArgs e)
+        {
+            TrainerModWindow trainerMod = new TrainerModWindow();
+
+            if(trainerMod.ShowDialog() == true)
+            {
+                var helper = trainerMod.cucc.TrainerName;
+                if (helper == null)
+                {
+                    MessageBox.Show("No bueno");
+                    return;
+                }
+
+                Trainer newTrainer = new Trainer()
+                {
+                    TrainerID = Guid.NewGuid().ToString(),
+                    TrainerName = helper
+                };
+
+                RestService restservice = new RestService(url, "/Trainer", token);
+                restservice.Post(newTrainer);
+
+                MessageBox.Show("Added to database");
+                await this.GetTrainerNames();
+            }
+            else
+            {
+                MessageBox.Show("Pain");
+            }
+        }
+
+        private async void Add_Client(object sender, RoutedEventArgs e)
+        {
+            ClientModWindow clientMod = new ClientModWindow();
+            if (clientMod.ShowDialog() == true)
+            {
+
+                var helper = clientMod.viewModel;
+                if (helper == null)
+                {
+                    MessageBox.Show("No bueno");
+                    return;
+                }
+
+                GymClient newClient = new GymClient()
+                {
+                    GymID = Guid.NewGuid().ToString(),
+                    FullName = helper.FullName,
+                    Age = helper.Age,
+                    Gender = Genders.Férfi,
+                    BeenWorkingOutFor = helper.BeenWorkingOutFor,
+                    Verified = false,
+                    TrainerID = (cbox.SelectedItem as Trainer).TrainerID
+                };
+
+                RestService restservice = new RestService(url, "/Client", token);
+                restservice.Post(newClient);
+
+                MessageBox.Show("Added to database");
+                await this.GetTrainerNames();
+            }
+            else
+            {
+                MessageBox.Show("Pain");
+            }
         }
     }
 }

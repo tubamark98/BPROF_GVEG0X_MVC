@@ -28,7 +28,7 @@ namespace ApiConsumer
         private void Login_Event(object sender, RoutedEventArgs e)
         {
             UserName = tb_username.Text;
-            Password = tb_pass.Password;
+            Password = "RoppantMonguzCsont23";
             this.DialogResult = true;
         }
     }

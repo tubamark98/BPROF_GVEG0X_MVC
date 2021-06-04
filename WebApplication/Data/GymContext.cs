@@ -29,9 +29,9 @@ namespace Data
                     UseLazyLoadingProxies().
                     //UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\GymDB.mdf;integrated security=True;MultipleActiveResultSets=True");
                     //UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=GymDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                    UseSqlServer(@"Server = tcp:tubamark.database.windows.net, 1433; Initial Catalog = gymdb; Persist Security Info = False; User ID = tylondys; Password = AtCHias52v5VpkY; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
+                    UseSqlServer(@"Server=tcp:tubamark.database.windows.net,1433;Initial Catalog=GymAzureDB;Persist Security Info=False;User ID=tylondys;Password=AtCHias52v5VpkY;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
-            //database: gymdb
+            //database: GymAzureDB
             //kiszolgalo: tubamark.database.windows.net
             //admin: tylondys
             //pw: AtCHias52v5VpkY
@@ -89,12 +89,12 @@ namespace Data
 
             modelBuilder.Entity<GymClient>(entity =>
             {
-                entity.HasOne(client => client.Trainer).WithMany(trainer => trainer.GymClients).HasForeignKey(client => client.TrainerID);
+                entity.HasOne(client => client.Trainer).WithMany(trainer => trainer.GymClients).HasForeignKey(client => client.TrainerID).OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<ExtraInfo>(entity =>
             {
-                entity.HasOne(infos => infos.GymClient).WithMany(client => client.ExtraInfos).HasForeignKey(infos => infos.GymID);
+                entity.HasOne(infos => infos.GymClient).WithMany(client => client.ExtraInfos).HasForeignKey(infos => infos.GymID).OnDelete(DeleteBehavior.Cascade);
             });
         }
        

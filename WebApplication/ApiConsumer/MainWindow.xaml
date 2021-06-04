@@ -6,31 +6,25 @@
         xmlns:local="clr-namespace:ApiConsumer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
-        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" Width="746" Height="38">
+        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="390" Height="48">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding TrainerName}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ListBox x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.GymClients}"  Margin="24,105,446,0" VerticalAlignment="Top" Height="253">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding FullName}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Margin="384,105,30,76">
-            <Label FontSize="20" Content="Name"></Label>
-            <TextBox x:Name="tb_name"/>
-            <Label FontSize="20" Content="ID"></Label>
-            <TextBox x:Name="tb_clientID"/>
-            <Label FontSize="20" Content="Age"></Label>
-            <TextBox x:Name="tb_age"/>
-            <Button Content="Add Client" FontSize="20" Click="Button_Click"/>
-            <Button Content="Delete Selected Trainer" FontSize="20" Click="Delete_Trainer"/>
-            
-        </StackPanel>
+        <Grid>
+            <DataGrid IsReadOnly="True" x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.GymClients}" HorizontalAlignment="Left" Height="305" Margin="10,97,0,0" VerticalAlignment="Top" Width="646"/>
+        </Grid>
+        <Grid Margin="685,100,0,0">
+            <Button Content="Delete Client" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Delete_Client"/>
+            <Button Content="Delete Trainer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Delete_Trainer" Margin="0,35,0,0"/>
+            <Button Content="Add Trainer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Add_Trainer" Margin="0,70,0,0"/>
+            <Button Content="Add Client" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Add_Client" Margin="0,105,0,0"/>
+            <Button Content="Mod Trainer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Mod_Trainer" Margin="0,140,0,0"/>
+            <Button Content="Mod Client" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Mod_Client" Margin="0,175,0,0"/>
+        </Grid>
     </Grid>
 </Window>
