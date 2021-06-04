@@ -44,12 +44,29 @@ namespace ApiConsumer
 
                 token = tvm.Token;
 
-                await this.GetTrainerNames();
+                await this.RefreshLists();
             }
             else
             {
                 this.Close();
             }
+        }
+
+        public async Task RefreshLists()
+        {
+            await this.GetTrainerNames();
+            await this.GetClientNames();
+        }
+
+        private async Task GetClientNames()
+        {
+            cbox.ItemsSource = null;
+            RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Client", token);
+            IEnumerable<GymClient> clients =
+                await restservice.Get<GymClient>();
+
+            cbox.ItemsSource = clients;
+            cbox.SelectedIndex = 0;
         }
 
         public async Task GetTrainerNames()
@@ -63,7 +80,7 @@ namespace ApiConsumer
             cbox.SelectedIndex = 0;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             GymClient newClient = new GymClient()
             {
@@ -78,7 +95,42 @@ namespace ApiConsumer
 
             RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Client", token);
             restservice.Post(newClient);
-            this.GetTrainerNames();
+            await this.GetTrainerNames();
+        }
+
+        private async void Delete_Trainer(object sender, RoutedEventArgs e)
+        {
+            var item = cbox.SelectedItem as Trainer;
+            if (item != null)
+            {
+                RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Trainer", token);
+                restservice.Delete<string>(item.TrainerID);
+
+                MessageBox.Show("The following trainer, " + item.TrainerName + " has been deleted.");
+
+                await RefreshLists();
+
+                return;
+            }
+
+            MessageBox.Show("No trainer selected.");
+        }
+
+        private async void Delete_Client(object sender, RoutedEventArgs e)
+        {
+            var item = lbox.SelectedItem as GymClient;
+            if (item != null)
+            {
+                RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Client", token);
+                restservice.Delete<string>(item.GymID);
+
+                MessageBox.Show("The following client, " + item.FullName + " has been deleted.");
+
+                await RefreshLists();
+
+                return;
+            }
+            MessageBox.Show("No client selected.");
         }
     }
 }
