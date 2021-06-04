@@ -77,9 +77,9 @@ namespace ApiEndpoint
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseAuthentication();

@@ -28,10 +28,15 @@ namespace Data
                 optionsBuilder.
                     UseLazyLoadingProxies().
                     //UseSqlServer(@"data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\GymDB.mdf;integrated security=True;MultipleActiveResultSets=True");
-                    UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=GymDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                    //UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=GymDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                    UseSqlServer(@"Server = tcp:tubamark.database.windows.net, 1433; Initial Catalog = gymdb; Persist Security Info = False; User ID = tylondys; Password = AtCHias52v5VpkY; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
             }
+            //database: gymdb
+            //kiszolgalo: tubamark.database.windows.net
+            //admin: tylondys
+            //pw: AtCHias52v5VpkY
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

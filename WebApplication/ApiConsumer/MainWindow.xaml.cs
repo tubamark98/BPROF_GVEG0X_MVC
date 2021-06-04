@@ -35,7 +35,7 @@ namespace ApiConsumer
             PasswordWindow pw = new PasswordWindow();
             if (pw.ShowDialog() == true)
             {
-                RestService restservice = new RestService("https://localhost:7766/", "/Auth");
+                RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Auth");
                 TokenViewModel tvm = await restservice.Put<TokenViewModel, LoginViewModel>(new LoginViewModel()
                 {
                     Username = pw.UserName,
@@ -55,7 +55,7 @@ namespace ApiConsumer
         public async Task GetTrainerNames()
         {
             cbox.ItemsSource = null;
-            RestService restservice = new RestService("https://localhost:7766/", "/Trainer", token);
+            RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Trainer", token);
             IEnumerable<Trainer> trainers =
                 await restservice.Get<Trainer>();
 
@@ -76,7 +76,7 @@ namespace ApiConsumer
                 TrainerID = (cbox.SelectedItem as Trainer).TrainerID
             };
 
-            RestService restservice = new RestService("https://localhost:7766/", "/Client", token);
+            RestService restservice = new RestService("https://gymapideploy.azurewebsites.net/", "/Client", token);
             restservice.Post(newClient);
             this.GetTrainerNames();
         }

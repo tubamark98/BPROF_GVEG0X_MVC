@@ -28,7 +28,9 @@
             <TextBox x:Name="tb_clientID"/>
             <Label FontSize="20" Content="Age"></Label>
             <TextBox x:Name="tb_age"/>
-            <Button Content="Add" FontSize="20" Click="Button_Click"/>
+            <Button Content="Add Client" FontSize="20" Click="Button_Click"/>
+            <Button Content="Delete Selected Trainer" FontSize="20" Click="Delete_Trainer"/>
+            
         </StackPanel>
     </Grid>
 </Window>
