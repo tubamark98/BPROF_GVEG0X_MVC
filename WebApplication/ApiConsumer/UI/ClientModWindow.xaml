@@ -7,19 +7,19 @@
         xmlns:vm="clr-namespace:ApiConsumer.VM"
         d:DataContext="{d:DesignInstance Type={x:Type vm:ClientVM}}"
         mc:Ignorable="d"
-        Title="ClientModWindow" Height="209" Width="225">
+        Title="ClientModWindow" Height="200" Width="400">
     <Grid>
         <Label Content="Full Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="FullNameText" Text="{Binding Path=FullName}" HorizontalAlignment="Left" Margin="76,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124"/>
+        <TextBox x:Name="FullNameText" Text="{Binding Path=FullName}" HorizontalAlignment="Left" Margin="76,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
 
         <Label Content="GymID:" HorizontalAlignment="Left" Margin="11,36,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="IDText" Content="{Binding Path=GymID}" HorizontalAlignment="Left" Margin="84,44,0,0" VerticalAlignment="Top" Width="116"/>
+        <Label x:Name="IDText" Content="{Binding Path=GymID}" HorizontalAlignment="Left" Margin="84,44,0,0" VerticalAlignment="Top" Width="192"/>
 
         <Label Content="Age:" HorizontalAlignment="Left" Margin="11,62,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AgeText" PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=Age}" HorizontalAlignment="Left" Margin="84,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="AgeText" PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=Age}" HorizontalAlignment="Left" Margin="84,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192"/>
 
         <Label Content="Workout For:" HorizontalAlignment="Left" Margin="3,88,0,0" VerticalAlignment="Top" Width="81"/>
-        <TextBox x:Name="LengthText" PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=BeenWorkingOutFor}" HorizontalAlignment="Left" Margin="84,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="LengthText" PreviewTextInput="NumberValidationTextBox" Text="{Binding Path=BeenWorkingOutFor}" HorizontalAlignment="Left" Margin="84,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192"/>
 
         <Button Content="OK" Click="OkClick" HorizontalAlignment="Left" Margin="19,143,0,0" VerticalAlignment="Top" Width="80"/>
         <Button Content="CANCEL" Click="CancelClick" HorizontalAlignment="Left" Margin="104,143,0,0" VerticalAlignment="Top" Width="80"/>

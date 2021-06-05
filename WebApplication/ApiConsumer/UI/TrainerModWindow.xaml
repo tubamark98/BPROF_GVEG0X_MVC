@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:ApiConsumer.VM"
         d:DataContext="{d:DesignInstance Type={x:Type vm:TrainerVM}}"
         mc:Ignorable="d"
-        Title="Trainer Window" Height="209" Width="225">
+        Title="Trainer Window" Height="200" Width="400">
     <Grid>
         <Label Content="Full Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TrainerText" Text="{Binding Path=TrainerName}" HorizontalAlignment="Left" Margin="80,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

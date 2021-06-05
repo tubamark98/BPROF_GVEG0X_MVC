@@ -25,6 +25,7 @@
             <Button Content="Add Client" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Add_Client" Margin="0,105,0,0"/>
             <Button Content="Mod Trainer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Mod_Trainer" Margin="0,140,0,0"/>
             <Button Content="Mod Client" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Mod_Client" Margin="0,175,0,0"/>
+            <Button Content="View Info" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="View_Info" Margin="0,210,0,0"/>
         </Grid>
     </Grid>
 </Window>

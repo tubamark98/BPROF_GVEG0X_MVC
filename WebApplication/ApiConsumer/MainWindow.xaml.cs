@@ -102,12 +102,68 @@ namespace ApiConsumer
 
         private async void Mod_Trainer(object sender, RoutedEventArgs e)
         {
+            TrainerModWindow trainerMod = new TrainerModWindow(cbox.SelectedItem as Trainer);
 
+            if (trainerMod.ShowDialog() == true)
+            {
+                var helper = trainerMod.cucc;
+                if (helper == null)
+                {
+                    MessageBox.Show("No bueno");
+                    return;
+                }
+
+                Trainer newTrainer = new Trainer()
+                {
+                    TrainerID = helper.TrainerID,
+                    TrainerName = helper.TrainerName
+                };
+
+                RestService restservice = new RestService(url, "/Trainer", token);
+                restservice.Put<string, Trainer>(newTrainer.TrainerID, newTrainer);
+
+                MessageBox.Show("Updated " + newTrainer.TrainerName + " in the database");
+                await this.GetTrainerNames();
+            }
+            else
+            {
+                MessageBox.Show("Pain");
+            }
         }
 
         private async void Mod_Client(object sender, RoutedEventArgs e)
         {
+            ClientModWindow clientMod = new ClientModWindow(lbox.SelectedItem as GymClient);
+            if (clientMod.ShowDialog() == true)
+            {
+                var helper = clientMod.viewModel;
+                if (helper == null)
+                {
+                    MessageBox.Show("No bueno");
+                    return;
+                }
 
+                GymClient newClient = new GymClient()
+                {
+                    GymID = helper.GymID,
+                    FullName = helper.FullName,
+                    Age = helper.Age,
+                    Gender = helper.Gender,
+                    BeenWorkingOutFor = helper.BeenWorkingOutFor,
+                    Verified = false,
+                    TrainerID = (cbox.SelectedItem as Trainer).TrainerID
+                };
+
+                RestService restservice = new RestService(url, "/Client", token);
+                restservice.Put<string, GymClient>(newClient.GymID, newClient);
+
+                MessageBox.Show("Updated " + newClient.FullName + " in the database");
+                await this.GetTrainerNames();
+            }
+            else
+            {
+                MessageBox.Show("Pain");
+            }
         }
 
         private async void Add_Trainer(object sender, RoutedEventArgs e)
@@ -132,7 +188,7 @@ namespace ApiConsumer
                 RestService restservice = new RestService(url, "/Trainer", token);
                 restservice.Post(newTrainer);
 
-                MessageBox.Show("Added to database");
+                MessageBox.Show("Added " + newTrainer.TrainerName + " to the database");
                 await this.GetTrainerNames();
             }
             else
@@ -146,7 +202,6 @@ namespace ApiConsumer
             ClientModWindow clientMod = new ClientModWindow();
             if (clientMod.ShowDialog() == true)
             {
-
                 var helper = clientMod.viewModel;
                 if (helper == null)
                 {
@@ -159,7 +214,7 @@ namespace ApiConsumer
                     GymID = Guid.NewGuid().ToString(),
                     FullName = helper.FullName,
                     Age = helper.Age,
-                    Gender = Genders.Férfi,
+                    Gender = helper.Gender,
                     BeenWorkingOutFor = helper.BeenWorkingOutFor,
                     Verified = false,
                     TrainerID = (cbox.SelectedItem as Trainer).TrainerID
@@ -168,13 +223,18 @@ namespace ApiConsumer
                 RestService restservice = new RestService(url, "/Client", token);
                 restservice.Post(newClient);
 
-                MessageBox.Show("Added to database");
+                MessageBox.Show("Added " + newClient.FullName + " to the database");
                 await this.GetTrainerNames();
             }
             else
             {
                 MessageBox.Show("Pain");
             }
+        }
+
+        public async void View_Info(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

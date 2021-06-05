@@ -16,10 +16,13 @@ namespace ApiConsumer.UI
             InitializeComponent();
         }
 
-        public TrainerModWindow(TrainerVM trainer)
+        public TrainerModWindow(Trainer trainer)
             : this()
         {
-            this.DataContext = trainer;
+            cucc.TrainerID = trainer.TrainerID;
+            cucc.TrainerName = trainer.TrainerName;
+
+            this.DataContext = cucc;
         }
 
         private void OkClick(object sender, RoutedEventArgs eventArgs)

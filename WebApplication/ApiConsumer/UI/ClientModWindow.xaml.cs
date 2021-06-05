@@ -28,8 +28,17 @@ namespace ApiConsumer.UI
         }
 
         public ClientModWindow(GymClient client)
+            : this()
         {
-            this.DataContext = client;
+            viewModel.GymID = client.GymID;
+            viewModel.FullName = client.FullName;
+            viewModel.Gender = client.Gender;
+            viewModel.Age = client.Age;
+            viewModel.BeenWorkingOutFor = client.BeenWorkingOutFor;
+            viewModel.Verified = client.Verified;
+            viewModel.TrainerID = client.TrainerID;
+
+            this.DataContext = viewModel;
         }
 
         private void OkClick(object sender, RoutedEventArgs eventArgs)
@@ -43,6 +52,8 @@ namespace ApiConsumer.UI
             {
                 viewModel.Age = ageHelper;
             }
+
+            viewModel.Gender = Genders.Férfi;
 
             var workoutLengthHelper = int.Parse(this.LengthText.Text);
             if (workoutLengthHelper < 0 || workoutLengthHelper > 90)

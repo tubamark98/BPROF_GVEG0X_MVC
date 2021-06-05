@@ -37,7 +37,6 @@ namespace Models
         [NotMapped]
         [JsonIgnore]
         public virtual Trainer Trainer { get; set; }
-        [JsonIgnore]
         public virtual ICollection<ExtraInfo> ExtraInfos { get; set; }
     }
 }
