@@ -27,9 +27,21 @@ namespace ApiConsumer
 
         private void Login_Event(object sender, RoutedEventArgs e)
         {
-            UserName = tb_username.Text;
-            Password = "RoppantMonguzCsont23";
+            Testing();
+            //Release();
             this.DialogResult = true;
+        }
+
+        private void Release()
+        {
+            UserName = tb_username.Text;
+            Password = tb_pass.Password;
+        }
+
+        private void Testing()
+        {
+            UserName = "val.afo00@gmail.com";
+            Password = "RoppantMonguzCsont23";
         }
     }
 }
