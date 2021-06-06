@@ -94,8 +94,6 @@ namespace ApiConsumer.UI
             this.DialogResult = true;
         }
 
-        public GymClient GymClient { get; set; }
-
         private void CancelClick(object sender, RoutedEventArgs eventArgs)
         {
             this.DialogResult = false;

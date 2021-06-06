@@ -1,4 +1,5 @@
-﻿using ApiConsumer.UI;
+﻿using ApiConsumer.CustomCode;
+using ApiConsumer.UI;
 using ApiConsumer.VM;
 using Models;
 using Models.ViewModels;
@@ -274,10 +275,24 @@ namespace ApiConsumer
 
         public async void View_Info(object sender, RoutedEventArgs e)
         {
+            RestService restservice = new RestService(url, "/Client", token);
+            IEnumerable<GymClient> clients =
+                await restservice.Get<GymClient>();
 
+            try
+            {
+                NullCheck(clients);
+            }
+            catch (NullCheckException)
+            {
+                return;
+            }
+
+            InfoWindow infoWindow = new(clients, token);
+            infoWindow.ShowDialog();
         }
 
-        private void NullCheck(object o)
+        public void NullCheck(object o)
         {
             if (o == null)
             {

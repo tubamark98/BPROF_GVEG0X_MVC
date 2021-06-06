@@ -91,8 +91,6 @@ namespace ApiConsumer
         {
             HttpResponseMessage response =
                 await client.DeleteAsync(endpoint + "/" + id.ToString());
-
-            //response.EnsureSuccessStatusCode();
         }
 
         public async Task<R> Put<R, K, T>(K id, T item)

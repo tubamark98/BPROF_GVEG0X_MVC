@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:ApiConsumer.UI"
         mc:Ignorable="d"
         Title="InfoWindow" Height="450" Width="800">
+    
     <Grid>
-        
+        <ComboBox x:Name="cbox" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="390" Height="48">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding FullName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Grid>
+            <DataGrid IsReadOnly="True" x:Name="lbox" ItemsSource="{Binding ElementName=cbox, Path=SelectedItem.ExtraInfos}" HorizontalAlignment="Left" Height="305" Margin="10,97,0,0" VerticalAlignment="Top" Width="646"/>
+        </Grid>
+        <Grid Margin="685,100,0,0">
+            <Button Content="Delete Info" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Del_View"/>
+            <Button Content="Modify Info" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Mod_View" Margin="0,35,0,0"/>
+            <Button Content="Add Info" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Click="Add_View" Margin="0,70,0,0"/>
+        </Grid>
     </Grid>
 </Window>
