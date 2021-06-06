@@ -58,11 +58,19 @@ namespace ApiConsumer
 
         private async void Delete_Trainer(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                NullCheck(cbox.SelectedItem);
+            }
+            catch(NullCheckException)
+            {
+                return;
+            }
+            
             Trainer helper = cbox.SelectedItem as Trainer;
 
             if (helper != null)
             {
-                ;
                 foreach(var item in helper.GymClients)
                 {
                     RestService helpService = new RestService(url, "/Client", token);
@@ -83,6 +91,15 @@ namespace ApiConsumer
 
         private async void Delete_Client(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                NullCheck(lbox.SelectedItem);
+            }
+            catch (NullCheckException)
+            {
+                return;
+            }
+
             GymClient helper = lbox.SelectedItem as GymClient;
 
             if (helper != null)
@@ -102,16 +119,21 @@ namespace ApiConsumer
 
         private async void Mod_Trainer(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                NullCheck(cbox.SelectedItem);
+            }
+            catch (NullCheckException)
+            {
+                return;
+            }
+
             TrainerModWindow trainerMod = new TrainerModWindow(cbox.SelectedItem as Trainer);
 
             if (trainerMod.ShowDialog() == true)
             {
                 var helper = trainerMod.cucc;
-                if (helper == null)
-                {
-                    MessageBox.Show("No bueno");
-                    return;
-                }
+                NullCheck(helper);
 
                 Trainer newTrainer = new Trainer()
                 {
@@ -133,13 +155,25 @@ namespace ApiConsumer
 
         private async void Mod_Client(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                NullCheck(lbox.SelectedItem);
+            }
+            catch (NullCheckException)
+            {
+                return;
+            }
+
             ClientModWindow clientMod = new ClientModWindow(lbox.SelectedItem as GymClient);
             if (clientMod.ShowDialog() == true)
             {
                 var helper = clientMod.viewModel;
-                if (helper == null)
+                try
                 {
-                    MessageBox.Show("No bueno");
+                    NullCheck(helper);
+                }
+                catch (NullCheckException)
+                {
                     return;
                 }
 
@@ -150,7 +184,7 @@ namespace ApiConsumer
                     Age = helper.Age,
                     Gender = helper.Gender,
                     BeenWorkingOutFor = helper.BeenWorkingOutFor,
-                    Verified = false,
+                    Verified = helper.Verified,
                     TrainerID = (cbox.SelectedItem as Trainer).TrainerID
                 };
 
@@ -173,9 +207,12 @@ namespace ApiConsumer
             if(trainerMod.ShowDialog() == true)
             {
                 var helper = trainerMod.cucc.TrainerName;
-                if (helper == null)
+                try
                 {
-                    MessageBox.Show("No bueno");
+                    NullCheck(helper);
+                }
+                catch (NullCheckException)
+                {
                     return;
                 }
 
@@ -203,9 +240,12 @@ namespace ApiConsumer
             if (clientMod.ShowDialog() == true)
             {
                 var helper = clientMod.viewModel;
-                if (helper == null)
+                try
                 {
-                    MessageBox.Show("No bueno");
+                    NullCheck(helper);
+                }
+                catch (NullCheckException)
+                {
                     return;
                 }
 
@@ -216,7 +256,7 @@ namespace ApiConsumer
                     Age = helper.Age,
                     Gender = helper.Gender,
                     BeenWorkingOutFor = helper.BeenWorkingOutFor,
-                    Verified = false,
+                    Verified = helper.Verified,
                     TrainerID = (cbox.SelectedItem as Trainer).TrainerID
                 };
 
@@ -235,6 +275,15 @@ namespace ApiConsumer
         public async void View_Info(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void NullCheck(object o)
+        {
+            if (o == null)
+            {
+                MessageBox.Show("No bueno");
+                throw new NullCheckException();
+            }
         }
     }
 }

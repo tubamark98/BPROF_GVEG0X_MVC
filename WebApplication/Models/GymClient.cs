@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -9,8 +10,11 @@ namespace Models
 {
     public enum Genders
     {
+        [Description("Woman")]
         Nő,
+        [Description("Man")]
         Férfi,
+        [Description("Helicopter")]
         Helikopter
     }
 

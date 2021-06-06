@@ -2,6 +2,7 @@
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace ApiConsumer.UI
     public partial class ClientModWindow : Window
     {
         public ClientVM viewModel { get; set; }
+
         public ClientModWindow()
         {
             InitializeComponent();
@@ -36,6 +38,16 @@ namespace ApiConsumer.UI
             viewModel.Age = client.Age;
             viewModel.BeenWorkingOutFor = client.BeenWorkingOutFor;
             viewModel.Verified = client.Verified;
+
+            if(client.Verified)
+            {
+                cbVerified.IsChecked = true;
+            }
+            else
+            {
+                cbVerified.IsChecked = false;
+            }
+
             viewModel.TrainerID = client.TrainerID;
 
             this.DataContext = viewModel;
@@ -65,7 +77,19 @@ namespace ApiConsumer.UI
                 viewModel.BeenWorkingOutFor = workoutLengthHelper;
             }
 
+            if(cbVerified.IsChecked == true)
+            {
+                viewModel.Verified = true;
+            }
+            else
+            {
+                viewModel.Verified = false;
+            }
+            
             viewModel.FullName = this.FullNameText.Text;
+
+
+            viewModel.Gender = (Genders)cbox.SelectedItem;
 
             this.DialogResult = true;
         }
