@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ApiEndpoint.Controllers
 {
     [ApiController]
-    //[Authorize]
+    [Authorize]
     [Route("{controller}")]
     public class TrainerController : ControllerBase
     {

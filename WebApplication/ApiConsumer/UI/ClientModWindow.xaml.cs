@@ -1,4 +1,5 @@
-﻿using ApiConsumer.VM;
+﻿using ApiConsumer.CustomCode;
+using ApiConsumer.VM;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -88,8 +89,20 @@ namespace ApiConsumer.UI
             
             viewModel.FullName = this.FullNameText.Text;
 
+            string genderHelper = (cbox.SelectedItem as ValueDescription).Value.ToString();
 
-            viewModel.Gender = (Genders)cbox.SelectedItem;
+            if(genderHelper == Genders.Férfi.ToString())
+            {
+                viewModel.Gender = Genders.Férfi;
+            }
+            else if (genderHelper == Genders.Nő.ToString())
+            {
+                viewModel.Gender = Genders.Nő;
+            }
+            else
+            {
+                viewModel.Gender = Genders.Helikopter;
+            }
 
             this.DialogResult = true;
         }

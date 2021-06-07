@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApiEndpoint.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("{controller}")]
     public class ClientController : ControllerBase

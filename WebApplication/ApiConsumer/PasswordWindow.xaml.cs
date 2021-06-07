@@ -27,8 +27,8 @@ namespace ApiConsumer
 
         private void Login_Event(object sender, RoutedEventArgs e)
         {
-            Testing();
-            //Release();
+            //Testing();
+            Release();
             this.DialogResult = true;
         }
 
