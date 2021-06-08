@@ -28,6 +28,9 @@ namespace ApiConsumer.UI
         {
             InitializeComponent();
             this.viewModel = new ClientVM();
+            this.viewModel.Gender = Genders.Férfi;
+
+            this.DataContext = viewModel;
         }
 
         public ClientModWindow(GymClient client)
