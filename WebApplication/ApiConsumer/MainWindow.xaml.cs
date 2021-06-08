@@ -22,6 +22,11 @@ namespace ApiConsumer
         {
             this.InitializeComponent();
             this.Login();
+
+            if (token == null)
+            {
+                this.Close();
+            }
         }
 
         public async Task Login()
